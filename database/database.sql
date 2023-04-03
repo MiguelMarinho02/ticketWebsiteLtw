@@ -59,4 +59,4 @@ CREATE TABLE ticket_hashtags (
 );
 
 
-INSERT INTO faq VALUES (1,'a tua ','é');
+INSERT INTO faq VALUES (1,'addd','afawffa');
