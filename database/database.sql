@@ -1,18 +1,21 @@
 
+DROP TABLE IF EXISTS user;
 CREATE TABLE user(
     id INTEGER PRIMARY KEY,
     name VARCHAR(50) NOT NULL,
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(100) NOT NULL,
-    role ENUM('client', 'agent', 'admin') NOT NULL
+    role VARCHAR(10) CHECK(role = 'client' or role = 'agent' or role = 'admin') NOT NULL
 );
 
+DROP TABLE IF EXISTS department;
 CREATE TABLE department(
     id INTEGER PRIMARY KEY,
     name VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS tickets;
 CREATE TABLE tickets(
     id INTEGER PRIMARY KEY,
     department_id INTEGER,
@@ -20,8 +23,8 @@ CREATE TABLE tickets(
     agent_id INTEGER,
     subject VARCHAR(200) NOT NULL,
     description TEXT NOT NULL,
-    status ENUM('open', 'assigned', 'closed') NOT NULL,
-    priority ENUM('low', 'medium', 'high') NOT NULL,
+    status VARCHAR(10) CHECK(status = 'open' or status = 'assigned' or status = 'closed') NOT NULL,
+    priority VARCHAR(10) CHECK(priority = 'low' or priority = 'medium' or priority ='high') NOT NULL,
     created_at DATETIME NOT NULL,
     updated_at DATETIME,
     FOREIGN KEY (department_id) REFERENCES department(id),
@@ -29,6 +32,7 @@ CREATE TABLE tickets(
     FOREIGN KEY (agent_id) REFERENCES user(id)
 );
 
+DROP TABLE IF EXISTS message;
 CREATE TABLE message(
     id INTEGER PRIMARY KEY,
     msg TEXT NOT NULL,
@@ -39,17 +43,20 @@ CREATE TABLE message(
     FOREIGN KEY (ticket_id) REFERENCES tickets(id)
 );
 
+DROP TABLE IF EXISTS faq;
 CREATE TABLE faq(
   id INTEGER PRIMARY KEY,
   question TEXT NOT NULL,
   answer TEXT NOT NULL
 );
 
+DROP TABLE IF EXISTS hashtags;
 CREATE TABLE hashtags (
   id INTEGER PRIMARY KEY,
   hashtag VARCHAR(50) NOT NULL
 );
 
+DROP TABLE IF EXISTS ticket_hashtags;
 CREATE TABLE ticket_hashtags (
   ticket_id INT NOT NULL,
   hashtag_id INT NOT NULL,
@@ -57,6 +64,5 @@ CREATE TABLE ticket_hashtags (
   FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
   FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
-
 
 INSERT INTO faq VALUES (1,'addd','afawffa');
