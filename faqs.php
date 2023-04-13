@@ -14,8 +14,8 @@
          foreach ($faqs as $faq) {
             $answer = $faq['answer'];
             $question = $faq['question'];
-            echo "<p>$question</p>";
-            echo $answer;
+            echo "<h1>$question</h1>";
+            echo "<p>$answer</p>";
          }
       ?>
    </body>
