@@ -65,4 +65,15 @@ CREATE TABLE ticket_hashtags (
   FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
 
+INSERT INTO department VALUES (1,'IT');
+INSERT INTO department VALUES (2,'Ciencias');
+INSERT INTO department VALUES (3,'Restaurante');
+INSERT INTO department VALUES (4,'Limpezas');
+
+INSERT INTO user VALUES (1,'Michael Jackson','MJ124','mj2021@gmail.com','123321','admin');
+INSERT INTO user VALUES (2,'Joe Biden','JB202','jb2021@gmail.com','123321','agent');
+INSERT INTO user VALUES (3,'Zaidu','zed14','z2021@gmail.com','123321','client');
+
+INSERT INTO tickets VALUES (1,1,1,2,'pc wont start','dadawfafawgawf','open','medium','jan 1 2009 13:22:15','jan 1 2009 13:22:15');
+
 INSERT INTO faq VALUES (1,'PC will not start','Have you tried turning it off and on again?');

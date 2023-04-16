@@ -42,6 +42,55 @@
       <br>
 
       <h2>Active tickets</h2>
+      <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Department</th>
+                <th>Client</th>
+                <th>Agent</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+               foreach ($tickets as $ticket) {
+
+                $department_id = $ticket['department_id'];
+                $stmt = $db->prepare('SELECT * FROM department WHERE id = ?');
+                $stmt->execute(array($department_id));
+                $departments = $stmt->fetchAll();
+                foreach ($departments as $department){};
+                
+                $client_id = $ticket['client_id'];
+                $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
+                $stmt->execute(array($client_id));
+                $users = $stmt->fetchAll();
+                foreach ($users as $c_user){};
+
+                $agent_id = $ticket['agent_id'];
+                $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
+                $stmt->execute(array($agent_id));
+                $users = $stmt->fetchAll();
+                foreach ($users as $a_user){};
+                
+                echo "<tr>
+                    <td>" . $ticket['id'] . "</td>
+                    <td>" . $department['name'] . "</td>
+                    <td>" . $c_user['name'] . "</td>
+                    <td>" . $a_user['name'] . "</td>
+                    <td>" . $ticket['subject'] . "</td>
+                    <td>" . $ticket['status'] . "</td>
+                    <td>" . $ticket['priority'] . "</td>
+                    <td>" . $ticket['created_at'] . "</td>
+                </tr>";   
+               }
+            ?>
+        </tbody>
+      </table>
 
    </body>
 
