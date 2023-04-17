@@ -1,7 +1,17 @@
 <?php
    declare(strict_types = 1);
    require_once('connection.php');
+   session_start();
    $db = getDatabaseConnection();
+
+   if (!isset($_SESSION["user_id"])){
+    header("Location: login.php");
+   }
+
+   $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
+   $stmt->execute(array($_SESSION["user_id"]));
+   $user = $stmt->fetch();
+
    $stmt = $db->prepare('SELECT * FROM tickets');
    $stmt->execute();
    $tickets = $stmt->fetchAll();
@@ -38,7 +48,9 @@
         </div>
       </div>
 
-      <h1>Welcome!</h1>
+      <h1>Welcome <?php echo $user["username"]?>!</h1>
+      <br>
+      <h2>Your role is <?php echo $user["role"]?>.</h2>
       <br>
 
       <h2>Active tickets</h2>
