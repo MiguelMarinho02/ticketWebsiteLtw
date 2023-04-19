@@ -7,7 +7,6 @@ $db = getDatabaseConnection();
 $stmt = $db->prepare('SELECT * FROM department');
 $stmt->execute();
 $departments = $stmt->fetchAll();
-
 ?>
 <html>
 <head>
@@ -46,7 +45,12 @@ $departments = $stmt->fetchAll();
                 echo "</select>";
             ?>
             <br>       
-            <input type="submit" value="Submit">      
+            <input type="submit" value="Submit">
+            <?php
+                if(!$valid_ticket):
+            ?>
+            <em>Invalid ticket!</em>
+            <?php endif; ?>
         </form>
 
     </header>

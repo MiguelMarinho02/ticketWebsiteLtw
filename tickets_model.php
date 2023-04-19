@@ -2,7 +2,7 @@
 session_start();
 require_once('connection.php');
 
-
+$valid_ticket = true;
 $db = getDatabaseConnection();
 
 if(!empty($_POST['subject'] && !empty($_POST['description']))){
@@ -18,7 +18,8 @@ if(!empty($_POST['subject'] && !empty($_POST['description']))){
     header("Location: tickets.php");
 }
 else{
-    echo 'error';
+    $valid_ticket = false;
+    header("Location: tickets.php");
 }
 
 ?>
