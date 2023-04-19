@@ -77,12 +77,14 @@
                 $stmt->execute(array($client_id));
                 $users = $stmt->fetchAll();
                 foreach ($users as $c_user){};
+                
 
                 $agent_id = $ticket['agent_id'];
                 $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
                 $stmt->execute(array($agent_id));
                 $users = $stmt->fetchAll();
                 foreach ($users as $a_user){};
+                
                 
                 echo "<tr>
                     <td>" . $ticket['id'] . "</td>
