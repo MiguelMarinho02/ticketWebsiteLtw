@@ -12,9 +12,6 @@
    $stmt->execute(array($_SESSION["user_id"]));
    $user = $stmt->fetch();
 
-   $stmt = $db->prepare('SELECT * FROM tickets');
-   $stmt->execute();
-   $tickets = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +40,12 @@
             <button type="submit"><a href="user_profile.php">Edit profile</a></button>
         </div>
         <br>
+        <?php if($user["role"] == "admin"): ?>
+        <div class="admin_page">
+            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
+        </div>
+        <br>
+        <?php endif; ?>
         <div class="logout">
             <button type="submit"><a href="logout.php">Logout</a></button>
         </div>
@@ -53,7 +56,7 @@
       <h2>Your role is <?php echo $user["role"]?>.</h2>
       <br>
 
-      <h2>Active tickets</h2>
+      <h2>Your Active tickets</h2>
       <table>
         <thead>
             <tr>
@@ -69,23 +72,25 @@
         </thead>
         <tbody>
             <?php
+
+               $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ? or agent_id = ?');
+               $stmt->execute(array($user["id"],$user["id"]));
+               $tickets = $stmt->fetchAll();
+
                foreach ($tickets as $ticket) {
 
-                $department_id = $ticket['department_id'];
                 $stmt = $db->prepare('SELECT * FROM department WHERE id = ?');
-                $stmt->execute(array($department_id));
+                $stmt->execute(array($ticket['department_id']));
                 $departments = $stmt->fetchAll();
                 foreach ($departments as $department){};
                 
-                $client_id = $ticket['client_id'];
                 $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-                $stmt->execute(array($client_id));
+                $stmt->execute(array($ticket['client_id']));
                 $users = $stmt->fetchAll();
                 foreach ($users as $c_user){};
 
-                $agent_id = $ticket['agent_id'];
                 $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-                $stmt->execute(array($agent_id));
+                $stmt->execute(array($ticket['agent_id']));
                 $users = $stmt->fetchAll();
                 foreach ($users as $a_user){};
                 

@@ -26,7 +26,7 @@
 
    <body>
 
-      <div class="buttons">
+   <div class="buttons">
         <div class="index">
             <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
         </div>
@@ -43,10 +43,17 @@
             <button type="submit"><a href="user_profile.php">Edit profile</a></button>
         </div>
         <br>
+        <?php if($user["role"] == "admin"): ?>
+        <div class="admin_page">
+            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
+        </div>
+        <br>
+        <?php endif; ?>
         <div class="logout">
             <button type="submit"><a href="logout.php">Logout</a></button>
         </div>
-      </div>
+    </div>
+
 
       <h2>Active tickets</h2>
       <table>

@@ -65,16 +65,4 @@ CREATE TABLE ticket_hashtags (
   FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
 
-INSERT INTO department VALUES (1,'IT');
-INSERT INTO department VALUES (2,'Ciencias');
-INSERT INTO department VALUES (3,'Restaurante');
-INSERT INTO department VALUES (4,'Limpezas');
-
-INSERT INTO user VALUES (1,'Michael Jackson','MJ124','mj2021@gmail.com','$2y$10$yJOEYgYyl1GJlBjZpHfFfe9zgO8lEvQ7JfHk.eEJGbrwY1O6msfqG','admin');
-INSERT INTO user VALUES (2,'Joe Biden','JB202','jb2021@gmail.com','$2y$10$yJOEYgYyl1GJlBjZpHfFfe9zgO8lEvQ7JfHk.eEJGbrwY1O6msfqG','agent');
-INSERT INTO user VALUES (3,'Zaidu','zed14','z2021@gmail.com','$2y$10$yJOEYgYyl1GJlBjZpHfFfe9zgO8lEvQ7JfHk.eEJGbrwY1O6msfqG','client');
-
-INSERT INTO tickets VALUES (1,1,1,2,'pc wont start','dadawfafawgawf','open','medium','jan 1 2011','jan 31 2002');
-INSERT INTO tickets VALUES (2,2,2,3,'siuu','theme','open','medium','jan 1 2009','jan 1 2222');
-
 INSERT INTO faq VALUES (1,'PC will not start','Have you tried turning it off and on again?');

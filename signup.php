@@ -3,9 +3,6 @@
 require_once('connection.php');
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    if ($_SERVER["REQUEST_METHOD"] === "POST"){
-    
-    }
     if (empty($_POST["name"])){
         die("Name is required");
     }

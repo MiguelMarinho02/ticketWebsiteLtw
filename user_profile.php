@@ -36,10 +36,17 @@ $user = $stmt->fetch();
             <button type="submit"><a href="user_profile.php">Edit profile</a></button>
         </div>
         <br>
+        <?php if($user["role"] == "admin"): ?>
+        <div class="admin_page">
+            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
+        </div>
+        <br>
+        <?php endif; ?>
         <div class="logout">
             <button type="submit"><a href="logout.php">Logout</a></button>
         </div>
       </div>
+
       <br>
       <div>
         <h3>Name: <?php echo $user["name"]?></h3>
