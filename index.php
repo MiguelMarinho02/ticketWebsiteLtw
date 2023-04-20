@@ -1,6 +1,7 @@
 <?php
    declare(strict_types = 1);
    require_once('connection.php');
+   require_once('functions.php');
    session_start();
    $db = getDatabaseConnection();
 
@@ -56,7 +57,7 @@
       <h2>Your role is <?php echo $user["role"]?>.</h2>
       <br>
 
-      <h2>Your Active tickets</h2>
+      <h2>Your Active tickets as client</h2>
       <table>
         <thead>
             <tr>
@@ -72,43 +73,33 @@
         </thead>
         <tbody>
             <?php
-
-               $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ? or agent_id = ?');
-               $stmt->execute(array($user["id"],$user["id"]));
-               $tickets = $stmt->fetchAll();
-
-               foreach ($tickets as $ticket) {
-
-                $stmt = $db->prepare('SELECT * FROM department WHERE id = ?');
-                $stmt->execute(array($ticket['department_id']));
-                $departments = $stmt->fetchAll();
-                foreach ($departments as $department){};
-                
-                $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-                $stmt->execute(array($ticket['client_id']));
-                $users = $stmt->fetchAll();
-                foreach ($users as $c_user){};
-
-                $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-                $stmt->execute(array($ticket['agent_id']));
-                $users = $stmt->fetchAll();
-                foreach ($users as $a_user){};
-                
-                echo "<tr>
-                    <td>" . $ticket['id'] . "</td>
-                    <td>" . $department['name'] . "</td>
-                    <td>" . $c_user['name'] . "</td>
-                    <td>" . $a_user['name'] . "</td>
-                    <td>" . $ticket['subject'] . "</td>
-                    <td>" . $ticket['status'] . "</td>
-                    <td>" . $ticket['priority'] . "</td>
-                    <td>" . $ticket['created_at'] . "</td>
-                </tr>";   
-               }
+               getTicketsTableForUser(true); //prints clients table
             ?>
         </tbody>
       </table>
-
+      <?php if($user["role"] != "client"):?>
+      <br>
+      <h2>Your Active tickets as agent</h2>
+      <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Department</th>
+                <th>Client</th>
+                <th>Agent</th>
+                <th>Subject</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php
+               getTicketsTableForUser(false); //prints agent table
+            ?>
+        </tbody>
+      </table>
+      <?php endif; ?>
    </body>
 
 </html>

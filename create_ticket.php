@@ -11,7 +11,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         $uniqueid = uniqid();
         
         $client_id = $_SESSION["user_id"];
-        $agent_id = 4;
+        $agent_id = null;
         $created_at = date("Y/m/d");
         $updated_at = NULL;
     
@@ -59,7 +59,7 @@ $departments = $stmt->fetchAll();
             <?php
                 echo "<select name='department' class='department'>";
                 $none_option = "---";
-                echo "<option value='$none_option'>$none_option</option>";
+                echo "<option value='null'>$none_option</option>";
                 foreach($departments as $department){
                     $d = $department['name'];
                     echo "<option value='$d'>$d</option>";
