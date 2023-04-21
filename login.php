@@ -25,6 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
     <head>
         <title>LogIn Page</title>
+        <link href="css/login.css" rel="stylesheet">
     </head>
     <body>
         <h1>Log In</h1>
@@ -48,7 +49,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             <button>Log in</button>
         </form>
-
-        <a href="signup.php">SignUp</a>
+        <div class ="ref">
+           <a href="signup.php">SignUp</a>
+        </div>
     </body>
 </html>        
