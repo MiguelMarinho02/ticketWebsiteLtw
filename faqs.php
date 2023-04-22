@@ -15,6 +15,12 @@
    $stmt = $db->prepare('SELECT * FROM faq');
    $stmt->execute();
    $faqs = $stmt->fetchAll();
+
+   if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    $stmt = $db->prepare('DELETE FROM faq WHERE id = ?');
+    $stmt->execute(array($_POST["del"]));
+    header("Location: faqs.php");
+   }
 ?>
 
 <!DOCTYPE html>
@@ -52,13 +58,24 @@
         </div>
       </div>
 
+      <form method="POST" action="faqs.php">
       <?php
-         foreach ($faqs as $faq) {
-            $answer = $faq['answer'];
-            $question = $faq['question'];
-            echo "<h1>$question</h1>";
-            echo "<p>$answer</p>";
-         }
+      foreach ($faqs as $faq) {
+        $answer = $faq['answer'];
+        $question = $faq['question'];
+        echo "<h1>$question</h1>";
+        echo "<p>$answer</p>";
+        if($user["role"] != "client"){
+            echo "<input type='hidden' name='del' value='".$faq['id']."' />";
+            echo "<input type='submit' name='btnsubmit' value='Delete'/>";
+        }
+        echo "<br>";
+      }
       ?>
+      </form>
+      <br>
+      <?php if($user["role"] != "client"): ?>
+      <a href="create_faq.php">Create FAQ</a>
+      <?php endif; ?>
    </body>
 </html>

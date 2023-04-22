@@ -73,7 +73,7 @@
         </thead>
         <tbody>
             <?php
-               getTicketsTableForUser(true); //prints clients table
+               getTicketsTableForUser(0); //prints clients table
             ?>
         </tbody>
       </table>
@@ -95,7 +95,7 @@
         </thead>
         <tbody>
             <?php
-               getTicketsTableForUser(false); //prints agent table
+               getTicketsTableForUser(1); //prints agent table
             ?>
         </tbody>
       </table>

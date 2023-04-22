@@ -64,5 +64,3 @@ CREATE TABLE ticket_hashtags (
   FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
   FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
-
-INSERT INTO faq VALUES (1,'PC will not start','Have you tried turning it off and on again?');

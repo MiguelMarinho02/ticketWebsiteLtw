@@ -36,9 +36,36 @@ div{
     
    
 }
- #email  {
+#email  {
 
     margin-left: 26.5px;
+    border-radius: 5px;
+    background-color: rgba(196,196,196,0.7);
+    border:solid 1px #ccc;
+   
+}
+
+#name  {
+
+    margin-left: 26.5px;
+    border-radius: 5px;
+    background-color: rgba(196,196,196,0.7);
+    border:solid 1px #ccc;
+   
+}
+
+#username  {
+
+    margin-left: 5px;
+    border-radius: 5px;
+    background-color: rgba(196,196,196,0.7);
+    border:solid 1px #ccc;
+   
+}
+
+#r_password  {
+
+    margin-left: 5px;
     border-radius: 5px;
     background-color: rgba(196,196,196,0.7);
     border:solid 1px #ccc;

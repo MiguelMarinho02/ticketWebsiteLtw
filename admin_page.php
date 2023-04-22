@@ -16,18 +16,19 @@ if($user == false){
  header("Location: index.php");
 }
 
-if(isset($_GET["del_dp"])){
-    $stmt = $db->prepare('DELETE FROM department WHERE id = ?');
-    $stmt->execute(array($_GET["del_dp"]));
-    header("Location: admin_page.php");
-}
+if ($_SERVER["REQUEST_METHOD"] == "POST"){
+    if(!empty($_POST["del_dp"])){
+       $stmt = $db->prepare('DELETE FROM department WHERE id = ?');
+       $stmt->execute(array($_POST["del_dp"]));
+       header("Location: admin_page.php");
+    }
 
-if(isset($_GET["del_user"])){
-    $stmt = $db->prepare('DELETE FROM user WHERE id = ?');
-    $stmt->execute(array($_GET["del_user"]));
-    header("Location: admin_page.php");
+    if(!empty($_POST["del_user"])){
+       $stmt = $db->prepare('DELETE FROM user WHERE id = ?');
+       $stmt->execute(array($_POST["del_user"]));
+       header("Location: admin_page.php");
+    }
 }
-
 
 ?>
 
@@ -69,6 +70,7 @@ if(isset($_GET["del_user"])){
       <div>
         <h3>Departments</h3>
         <a href="create_department.php">Create department</a>
+        <form method="POST" action="admin_page.php">
         <table>
         <thead>
             <tr>
@@ -90,17 +92,19 @@ if(isset($_GET["del_user"])){
                 echo "<tr>
                     <td>" . $department['id'] . "</td>
                     <td>" . $department['name'] . "</td>
-                    <td><a href='admin_page.php? del_dp=".$department['id']."' class='btn'>Delete</a></td>
+                    <td><button type='submit' name='del_dp' value='".$department['id']."'>Delete</button></td>
                 </tr>";   
                }
 
             ?>
         </tbody>
       </table>
+      </form>
       </div>
 
       <div>
         <h3>Users</h3>
+        <form method="POST" action="admin_page.php">
         <table>
         <thead>
             <tr>
@@ -128,14 +132,15 @@ if(isset($_GET["del_user"])){
                     <td>" . $user_list['name'] . "</td>
                     <td>" . $user_list['username'] . "</td>
                     <td>" . $user_list['role'] . "</td>
-                    <td><a href='admin_page.php? update_user=".$user_list['id']."' class='btn'>Update Role</a></td>
-                    <td><a href='admin_page.php? del_user=".$user_list['id']."' class='btn'>Delete</a></td>
+                    <td><button type='submit' name='update_user' value='".$user_list['id']."'>Update Role</button></td>
+                    <td><button type='submit' name='del_user' value='".$user_list['id']."'>Delete</button></td>
                 </tr>";   
                }
 
             ?>
         </tbody>
       </table>
+      </form>
       </div>
    </body>
 </html>

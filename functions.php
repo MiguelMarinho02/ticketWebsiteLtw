@@ -10,20 +10,28 @@ function searchUser($id){
     return $stmt->fetch();
 }
 
+//paramter == 0 (search by client_id)
+//paramter == 1 (serach by agent_id)
+//paramter == 2 (search all)
 function getTicketsTableForUser($paramter){
 
     $db = getDatabaseConnection();
  
     $user = searchUser($_SESSION["user_id"]);
 
-    if($paramter){
+    if($paramter == 0){
         $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ?');
         $stmt->execute(array($user["id"]));
         $tickets = $stmt->fetchAll();
     }
-    else{
+    else if(!$paramter == 1){
         $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ?');
         $stmt->execute(array($user["id"]));
+        $tickets = $stmt->fetchAll();
+    }
+    else if($paramter == 2){ 
+        $stmt = $db->prepare('SELECT * FROM tickets');
+        $stmt->execute();
         $tickets = $stmt->fetchAll();
     }
 
@@ -32,14 +40,17 @@ function getTicketsTableForUser($paramter){
         $stmt = $db->prepare('SELECT * FROM department WHERE id = ?');
         $stmt->execute(array($ticket['department_id']));
         $department = $stmt->fetch();
+        if($department == null){$department["name"] = "N\A";}
                 
         $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
         $stmt->execute(array($ticket['client_id']));
         $c_user = $stmt->fetch();
+        if($c_user == null){$c_user["name"] = "N\A";}
 
         $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
         $stmt->execute(array($ticket['agent_id']));
         $a_user = $stmt->fetch();
+        if($a_user == null){$a_user["name"] = "N\A";}
                 
         echo "<tr>
             <td>" . $ticket['id'] . "</td>

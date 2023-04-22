@@ -55,6 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 <html>
     <head>
         <title>SignUp Page</title>
+        <link href="css/login.css" rel="stylesheet">
     </head>
     <body>
         <h1>SignUp</h1>

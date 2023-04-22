@@ -2,6 +2,9 @@
 <?php
 session_start();
 require_once('connection.php');
+if (!isset($_SESSION["user_id"])){
+    header("Location: login.php");
+}
 $db = getDatabaseConnection();
 $valid_ticket = 2;
 
