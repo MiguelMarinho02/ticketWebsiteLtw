@@ -23,7 +23,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         if($_POST["new_password"] == "" and $_POST["old_password"] == ""){
             $stmt = $db->prepare('UPDATE user SET name = ?,username = ?,email = ? WHERE id = ?');
             $stmt->execute(array($_POST["name"],$_POST["username"],$_POST["email"],$user["id"]));
-            header("Location:user_profile.php");
+            $url = "user_profile.php?username=".$_POST["username"];
+            header("Location: " . $url);
             exit();
         }
         
@@ -63,14 +64,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <link rel="stylesheet" href="style_index.css">
    <head>
       <title>Edit Profile</title>
+      <script src="script/script.js"></script>
    </head>
 
    <body>
       <div class="buttons">
-        <div class="back">
-            <button type="submit" ><a href = "user_profile.php"><b>Go Back</b></a></button>
+        <div class="profile">
+        <button onclick="sendData('<?php echo $user['username'] ?>')">Back</button>
         </div>
         <br>
+
       </div>
       <br>
 

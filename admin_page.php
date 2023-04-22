@@ -37,9 +37,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <link rel="stylesheet" href="style_index.css">
    <head>
       <title>AdminPage</title>
+      <script src="script/script.js"></script>
    </head>
    <body>
-      <div class="buttons">
+   <div class="buttons">
         <div class="index">
             <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
         </div>
@@ -53,7 +54,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         </div>
         <br>
         <div class="profile">
-            <button type="submit"><a href="user_profile.php">Edit profile</a></button>
+        <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
         </div>
         <br>
         <?php if($user["role"] == "admin"): ?>

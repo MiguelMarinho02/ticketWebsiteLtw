@@ -28,9 +28,10 @@
 <link rel="stylesheet" href="style_index.css">
    <head>
       <title>Index</title>
+      <script src="script/script.js"></script>
    </head>
    <body>
-      <div class="buttons">
+   <div class="buttons">
         <div class="index">
             <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
         </div>
@@ -44,7 +45,7 @@
         </div>
         <br>
         <div class="profile">
-            <button type="submit"><a href="user_profile.php">Edit profile</a></button>
+        <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
         </div>
         <br>
         <?php if($user["role"] == "admin"): ?>
