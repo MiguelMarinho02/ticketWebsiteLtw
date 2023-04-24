@@ -25,6 +25,7 @@
 
    <body>
 
+      <div class="container">
       <div class="buttons">
         <div class="index">
             <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
@@ -52,7 +53,8 @@
             <button type="submit"><a href="logout.php">Logout</a></button>
         </div>
       </div>
-
+      
+      <div class="content">
       <h1>Welcome <?php echo $user["username"]?>!</h1>
       <br>
       <h2>Your role is <?php echo $user["role"]?>.</h2>
@@ -101,6 +103,8 @@
         </tbody>
       </table>
       <?php endif; ?>
+      </div> <?php //content div ?>
+      </div> <?php //container div ?>
    </body>
 
 </html>

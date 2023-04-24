@@ -1,3 +1,90 @@
-.buttons{
+/* Style for the body */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
+  
+  /* Style for the buttons */
+.buttons {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 50px;
+}
+  
+.buttons button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
+  
+  /* Style for the links */
+.buttons button a {
+    color: white;
+    text-decoration: none;
+}
+  
+  /* Style for the table */
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 50px;
+}
+  
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+  
+th {
+    background-color: #4CAF50;
+    color: white;
+}
+  
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+  
+  /* Style for the headings */
+h1, h2 {
+    text-align: center;
+    margin-top: 50px;
+}
+  
+  /* Style for the welcome message */
+h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+  
+  /* Style for the role message */
+h2 {
+    font-size: 24px;
+}
+  
+  /* Style for the logout button */
+.logout {
+    margin-top: 50px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+  
+.buttons {
+    display: flex;
+    flex-direction: column;
+}
+  
+.content {
+    flex: 1;
 }

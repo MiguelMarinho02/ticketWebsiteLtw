@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <?php
            if(!$valid_login):
         ?>
-        <em>Invalid login</em>
+        <p><em>Invalid login</em></p>
         <?php endif; ?>
 
         <form method="post">
