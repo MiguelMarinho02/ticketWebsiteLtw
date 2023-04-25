@@ -23,7 +23,7 @@ $html = '<table>
 <tr>';
 foreach ($results as $result) {
     $html .= "<tr>
-    <td>" . $result['username'] . "</td>
+    <td> <button onclick=sendData('". $result['username'] ."')>". $result['username'] ."</button></td>
     <td>" . $result['name'] . "</td>
     <td>" . $result['role'] . "</td>
     </tr>";

@@ -7,21 +7,23 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
-searchInput.addEventListener("input", (e) =>{
-    const value = e.target.value;
-    
-    request.open('get',"search_users.php?" + encodeForAjax({value:value}),true)
-    request.onload = function() {
-        if (request.status === 200) {
-            // the response was successful, update the HTML with the new content
-            document.getElementById('search-result').innerHTML = request.responseText;
-        } else {
-            // there was an error, log it to the console
-        console.error('Request failed.  Returned status of ' + request.status);
-        }
-    };
-    request.send();
-})
+if(searchInput != null){
+    searchInput.addEventListener("input", (e) =>{
+        const value = e.target.value;
+        
+        request.open('get',"search_users.php?" + encodeForAjax({value:value}),true)
+        request.onload = function() {
+            if (request.status === 200) {
+                // the response was successful, update the HTML with the new content
+                document.getElementById('search-result').innerHTML = request.responseText;
+            } else {
+                // there was an error, log it to the console
+            console.error('Request failed.  Returned status of ' + request.status);
+            }
+        };
+        request.send();
+    })
+}
 
 function sendData(username) {
     window.location.href = "user_profile.php?username=" + encodeURIComponent(username);

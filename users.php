@@ -81,7 +81,7 @@
                $users = getAllUsers();
                foreach($users as $element){
                 echo "<tr>
-                <td>" . $element['username'] . "</td>
+                <td> <button onclick=sendData('". $element['username'] ."')>". $element['username'] ."</button></td>
                 <td>" . $element['name'] . "</td>
                 <td>" . $element['role'] . "</td>
                 </tr>";
