@@ -1,8 +1,8 @@
 <?php
 
- declare(strict_types = 1);
- require_once('connection.php');
- session_start();
+declare(strict_types = 1);
+require_once('connection.php');
+session_start();
 function searchUser($id){
     $db = getDatabaseConnection();
     $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
@@ -63,6 +63,14 @@ function getTicketsTableForUser($paramter){
             <td>" . $ticket['created_at'] . "</td>
             </tr>";   
 }
+}
+
+function getAllUsers(){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT username,name,role FROM user');
+    $stmt->execute();
+    $users = $stmt->fetchAll();
+    return $users;
 }
 
 ?>

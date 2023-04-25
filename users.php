@@ -19,8 +19,8 @@
 <html lang="en-US">
 <link rel="stylesheet" href="style_index.css">
    <head>
-      <title>Index</title>
-      <script src="script/script.js"></script>
+      <title>UserList</title>
+      <script src="script/script.js" defer></script>
    </head>
 
    <body>
@@ -59,54 +59,37 @@
       </div>
       
       <div class="content">
-      <h1>Welcome <?php echo $user["username"]?>!</h1>
-      <br>
-      <h2>Your role is <?php echo $user["role"]?>.</h2>
-      <br>
 
-      <h2>Your Active tickets as client</h2>
+      <h2>List of users</h2>
+
+      <div class="search_wrapper">
+        <label for="search">Search Users</label><br>
+        <input type="search" id="search_user" placeholder="Search..">
+      </div>
+      
+      <div id="search-result">
       <table>
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Department</th>
-                <th>Client</th>
-                <th>Agent</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
+                <th>Username</th>
+                <th>Name</th>
+                <th>Role</th>
             </tr>
         </thead>
         <tbody>
             <?php
-               getTicketsTableForUser(0); //prints clients table
+               $users = getAllUsers();
+               foreach($users as $element){
+                echo "<tr>
+                <td>" . $element['username'] . "</td>
+                <td>" . $element['name'] . "</td>
+                <td>" . $element['role'] . "</td>
+                </tr>";
+               }
             ?>
         </tbody>
       </table>
-      <?php if($user["role"] != "client"):?>
-      <br>
-      <h2>Your Active tickets as agent</h2>
-      <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Department</th>
-                <th>Client</th>
-                <th>Agent</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-               getTicketsTableForUser(1); //prints agent table
-            ?>
-        </tbody>
-      </table>
-      <?php endif; ?>
+      </div>
       </div> <?php //content div ?>
       </div> <?php //container div ?>
    </body>

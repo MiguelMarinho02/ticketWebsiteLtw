@@ -38,6 +38,10 @@ $user_in_profile = $stmt->fetch();
             <button type="submit"><a href="faqs.php">Faqs</a></button>
         </div>
         <br>
+        <div class="users">
+            <button type="submit"><a href="users.php">UserList</a></button>
+        </div>
+        <br>
         <div class="profile">
         <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
         </div>
