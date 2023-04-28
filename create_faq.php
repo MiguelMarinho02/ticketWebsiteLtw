@@ -22,13 +22,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         $stmt->execute(array($_POST["question"],$_POST["answer"]));
         header("Location: faqs.php");
     }
+    $valid_input = false;
 }
-$valid_input = false;
 
 ?>
 
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="css/form.css">
 <head>
     <title>Create FAQ</title>
     <meta charset="utf-8">
@@ -39,11 +40,11 @@ $valid_input = false;
             <button type="submit"><a href="faqs.php">Back</a></button>
         </div>
         <div class="title">
-            <h2>Create a ticket</h2>
+            <h2>Create a FAQ</h2>
         </div>
 
         <?php if(!$valid_input):?>
-        <em>Please fill all spaces</em>
+        <p><em>Please fill all spaces</em></p>
         <?php endif; ?>
 
         <form method="POST">
@@ -53,8 +54,8 @@ $valid_input = false;
             </div>
 
             <div>
-                <label for="answer">Answer</label>
-                <input type="text" id= "answer" name = "answer">
+                <div class="input-label">Answer:</div>
+                <textarea name="answer" id="answer" cols="22" rows="5"></textarea>
             </div>
 
             <button>Create</button>

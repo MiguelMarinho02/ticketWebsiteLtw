@@ -31,6 +31,7 @@ $stmt->execute();
 $departments = $stmt->fetchAll();
 ?>
 <html>
+<link rel="stylesheet" href="css/form.css">
 <head>
     <title>Create ticket</title>
     <meta charset="utf-8">
@@ -74,12 +75,12 @@ $departments = $stmt->fetchAll();
             <?php
                 if($valid_ticket == 0):
             ?>
-            <em>Invalid ticket!</em>
+            <p><em>Invalid ticket!</em></p>
             <?php endif; ?>
             <?php
                 if($valid_ticket == 1):
             ?>
-            <em>Ticket created successfully!</em>
+            <p><em>Ticket created successfully!</p></em>
             <?php endif; ?>
         </form>
 
