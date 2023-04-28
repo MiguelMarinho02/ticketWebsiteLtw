@@ -63,7 +63,6 @@ div{
     border-radius: 5px;
     background-color: rgba(196,196,196,0.7);
     border:solid 1px #ccc;
-    width: 10% !important;
 }
 
 #r_password  {
