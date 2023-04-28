@@ -44,6 +44,10 @@
             <button type="submit"><a href="faqs.php">Faqs</a></button>
         </div>
         <br>
+        <div class="users">
+            <button type="submit"><a href="users.php">UserList</a></button>
+        </div>
+        <br>
         <div class="profile">
         <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
         </div>
@@ -64,7 +68,7 @@
       foreach ($faqs as $faq) {
         $answer = $faq['answer'];
         $question = $faq['question'];
-        echo "<h1>$question</h1>";
+        echo "<h3>$question</h3>";
         echo "<p>$answer</p>";
         if($user["role"] != "client"){
             echo "<input type='hidden' name='del' value='".$faq['id']."' />";
