@@ -1,133 +1,205 @@
 /* Style for the body */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  background-color: #f2f2f2;
 }
 
-  /* Style for the buttons */
-  /*
+/* Style for the buttons */
+/*
 .buttons {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
 }
 */
 .buttons .admin_page{
-    border-bottom: solid 3px black;
+  border-bottom: solid 3px black;
 }
 
 .buttons .logout{
-    border-bottom: solid 3px black;
+  border-bottom: solid 3px black;
 }
 
 .buttons li{
-    background-color: #4CAF50; /* Green */
-    text-decoration: none;
-    color: white;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-    width: 10em;
-    border-top: solid 3px black;
-    border-right: solid 3px black;
+  background-color: #4CAF50; /* Green */
+  text-decoration: none;
+  color: white;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  width: 10em;
+  border-top: solid 3px black;
+  border-right: solid 3px black;
 }
-  
+
+.buttons{
+  margin-top: 0%;
+}
+
 .buttons button {
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
 }
-  
-  /* Style for the links */
+
+/* Style for the links */
 .buttons button a {
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
 
 .buttons a{
-    color: white;
-    text-decoration: none;
+  color: white;
+  text-decoration: none;
 }
-  
-  /* Style for the table */
+
+/* Style for the table */
 table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 50px;
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 50px;
 }
-  
+
 th, td {
-    text-align: left;
-    padding: 8px;
+  text-align: left;
+  padding: 8px;
+  border-bottom: solid 3px black;
+  border: solid 3px black;
 }
   
 th {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4CAF50;
+  color: white;
 }
   
 tr:nth-child(even) {
-    background-color: #f2f2f2;
+  background-color: #f2f2f2;
 }
-  
-  /* Style for the headings */
+
+/* Style for the headings */
 h1, h2 {
-    text-align: center;
-    margin-top: 50px;
+  text-align: center;
+  margin-top: 50px;
 }
-  
-  /* Style for the welcome message */
+
+/* Style for the welcome message */
 h1 {
-    font-size: 36px;
-    font-weight: bold;
+  font-size: 36px;
+  font-weight: bold;
 }
-  
-  /* Style for the role message */
+
+/* Style for the role message */
 h2 {
-    font-size: 24px;
+  font-size: 24px;
 }
-  
-  /* Style for the logout button */
+
+/* Style for the logout button */
 .logout {
-    margin-top: 50px;
+  position: fixed;
+  bottom: 0;
 }
 
 .container_master{
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 50px;
+  margin-top: 0;
 }
 
 /* Style for the container */
 .container {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 50px;
-  }
-  
-  /* Style for the buttons */
-  .buttons {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* add this line to align items to the left */
-  }
-  
-  /* Style for the content */
-  .content {
-    flex: 1;
-    margin-left: 50px; /* add this line to add some space between the buttons and content */
-    width: 50em;
+  display: flex;
+  justify-content: space-between;
+  margin-left: -5.5%;
+  background-color: #9fa59f;
+  height: 100%;
+  position: fixed;
+  bottom: 0;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.25);
+}
+/* Style for the buttons */
+.buttons {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; /* add this line to align items to the left */
+}
+
+/* Style for the content */
+.content {
+  flex: 1;
+  margin-left: 190px; /* add this line to add some space between the buttons and content */
+  width: 50em;
+}
+
+.create_ticket a{
+  text-decoration: none;
+  color: white;
+}
+
+.create_ticket{
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  padding: 1px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px 1px;
+  cursor: pointer;
+}
+
+.create_faq a{
+  text-decoration: none;
+  color: white;
+}
+
+.create_faq{
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 8px 12px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 1px 1px;
+  cursor: pointer;
+}
+
+input[name='btnsubmit'] {
+  background-color: #c20000;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.content form h1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.content form p {
+  margin-top: 0;
 }

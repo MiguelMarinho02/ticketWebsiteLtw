@@ -24,8 +24,9 @@
    </head>
 
    <body>
+
     <div class="container_master">
-        <div class="container">
+        <div class="container">          
         <ul class="buttons">
             <li class="index"><a href="index.php">Início</a></li>
             <li class="tickets"><a href="tickets.php">Tickets</a></li>
@@ -37,7 +38,8 @@
             <?php endif; ?>
             <li class="logout"><a href="logout.php">Logout</a></li>
         </ul>
-        </div>  
+        </div>
+        
       <div class="content">
       <h1>Welcome <?php echo $user["username"]?>!</h1>
       <br>
