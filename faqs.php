@@ -25,44 +25,28 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="style_index.css">
+<link rel="stylesheet" href="css/style_index.css">
    <head>
       <title>Index</title>
       <script src="script/script.js"></script>
    </head>
    <body>
-   <div class="buttons">
-        <div class="index">
-            <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
-        </div>
-        <br>
-        <div class="tickets">
-            <button type="submit"><a href="tickets.php">Tickets</a></button>
-        </div>
-        <br>
-        <div class="faqs">
-            <button type="submit"><a href="faqs.php">Faqs</a></button>
-        </div>
-        <br>
-        <div class="users">
-            <button type="submit"><a href="users.php">UserList</a></button>
-        </div>
-        <br>
-        <div class="profile">
-        <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
-        </div>
-        <br>
-        <?php if($user["role"] == "admin"): ?>
-        <div class="admin_page">
-            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
-        </div>
-        <br>
-        <?php endif; ?>
-        <div class="logout">
-            <button type="submit"><a href="logout.php">Logout</a></button>
-        </div>
-      </div>
 
+   <div class="container_master">
+   <div class="container">
+        <ul class="buttons">
+            <li class="index"><a href="index.php">Início</a></li>
+            <li class="tickets"><a href="tickets.php">Tickets</a></li>
+            <li class="faqs"><a href="faqs.php">FAQ's</a></li>
+            <li class="users"><a href="users.php">UserList</a></li>
+            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <?php if($user["role"] == "admin"): ?>
+            <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
+            <?php endif; ?>
+            <li class="logout"><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
+    <div class="content">            
       <form method="POST" action="faqs.php">
       <?php
       foreach ($faqs as $faq) {
@@ -80,7 +64,11 @@
       </form>
       <br>
       <?php if($user["role"] != "client"): ?>
-      <a href="create_faq.php">Create FAQ</a>
+      <div class="create_faq">
+        <a href="create_faq.php">Create FAQ</a>
+      </div>
       <?php endif; ?>
+    </div>
+    </div>
    </body>
 </html>
