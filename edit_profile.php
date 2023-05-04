@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    <body>
       <div class="buttons">
         <div class="profile">
-        <button onclick="sendData('<?php echo $user['username'] ?>')">Back</button>
+        <button onclick="sendDataUser('<?php echo $user['username'] ?>')">Back</button>
         </div>
         <br>
 

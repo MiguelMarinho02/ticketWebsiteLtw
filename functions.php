@@ -24,7 +24,7 @@ function getTicketsTableForUser($paramter){
         $stmt->execute(array($user["id"]));
         $tickets = $stmt->fetchAll();
     }
-    else if(!$paramter == 1){
+    else if($paramter == 1){
         $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ?');
         $stmt->execute(array($user["id"]));
         $tickets = $stmt->fetchAll();
@@ -53,14 +53,14 @@ function getTicketsTableForUser($paramter){
         if($a_user == null){$a_user["name"] = "N\A";}
                 
         echo "<tr>
-            <td> <button onclick=sendDataTicket('". $ticket['id'] ."')>Go Check</button></td>
+            <td>" .$ticket['id']. "   <button onclick=sendDataTicket('". $ticket['id'] ."')>Go Check</button></td>
             <td>" . $department['name'] . "</td>
             <td>" . $c_user['name'] . "</td>
             <td>" . $a_user['name'] . "</td>
             <td>" . $ticket['subject'] . "</td>
             <td>" . $ticket['status'] . "</td>
             <td>" . $ticket['priority'] . "</td>
-            <td>" . $ticket['created_at'] . "</td>
+            <td>" . $ticket['updated_at'] . "</td>
             </tr>";   
 }
 }
@@ -79,13 +79,6 @@ function searchDepartment($department_id){
     $stmt->execute(array($department_id));
     $department = $stmt->fetch();
     return $department;
-}
-
-function updateTicketWithAgent($agent_id, $ticket_id){
-    $db = getDatabaseConnection();
-    $updated_at = date("F j, Y, g:i a");
-    $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ? WHERE id = ?');
-    $stmt->execute(array($agent_id,$updated_at,$ticket_id));
 }
 
 ?>

@@ -15,8 +15,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         
         $client_id = $_SESSION["user_id"];
         $agent_id = null;
-        $created_at = date("Y/m/d");
-        $updated_at = NULL;
+        $created_at = date("F j, Y, g:i a");
+        $updated_at = date("F j, Y, g:i a");
     
         $stmt = $db->prepare('INSERT INTO tickets (department_id, client_id, agent_id, subject, description, status, priority, created_at, updated_at) VALUES (?,?,?,?,?, "open",?,?,?)');
         $stmt->execute(array($_POST["department"],$client_id,$agent_id, $_POST["subject"], $_POST["description"], $_POST["priority"], $created_at, $updated_at));
