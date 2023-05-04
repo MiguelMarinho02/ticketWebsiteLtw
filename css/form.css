@@ -1,0 +1,116 @@
+body{
+    background-color: #dbdbdb;
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    max-width: 500px;
+    width:100%;
+    margin : 4em auto;
+    padding : 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h2{
+    text-align: center;
+}
+
+.ref {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-bottom: -15px;
+}
+
+.content {
+    margin-left: 60px;
+}
+
+label {
+    text-align: right;
+    padding-right: 10px;
+}
+
+p {
+    text-align: center;
+    justify-content: center;
+}
+
+form input {
+    padding: 5px;
+    width: 100%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#answer {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: solid 1px #ccc;
+    width: 260px;
+    vertical-align: top;
+    margin-bottom: 15px;
+    margin-left: 10px;
+}
+
+#question{
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border:solid 1px #ccc;
+    margin-bottom: 10px;
+}
+
+#name {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: solid 1px #ccc;
+    margin-bottom: 10px;
+}
+
+#username{
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border:solid 1px #ccc;
+    margin-bottom: 10px;
+}
+
+#email {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: solid 1px #ccc;
+    margin-bottom: 10px;    
+}
+
+#new_password{
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: solid 1px #ccc;
+    margin-bottom: 10px;
+    margin-left: -2px;
+}
+
+#old_password {
+    border-radius: 5px;
+    background-color: rgba(255, 255, 255, 0.7);
+    border: solid 1px #ccc;
+    margin-bottom: 10px;    
+}
+
+
+.input-label {
+    display: block;
+    margin-bottom: 5px;
+    margin-left: 10px;
+}
+
+button {
+    margin-top: 10px;
+    border-radius: 10px;
+    border:solid 2px black;   
+    box-shadow: 0px 4px 4px rgba(0,0,0,0.25);
+    width:100px;
+    height:30px;
+}

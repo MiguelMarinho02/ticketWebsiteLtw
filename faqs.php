@@ -31,6 +31,7 @@
       <script src="script/script.js"></script>
    </head>
    <body>
+
    <div class="container_master">
    <div class="container">
         <ul class="buttons">
@@ -51,7 +52,7 @@
       foreach ($faqs as $faq) {
         $answer = $faq['answer'];
         $question = $faq['question'];
-        echo "<h1>$question</h1>";
+        echo "<h3>$question</h3>";
         echo "<p>$answer</p>";
         if($user["role"] != "client"){
             echo "<input type='hidden' name='del' value='".$faq['id']."' />";

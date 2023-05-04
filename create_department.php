@@ -23,13 +23,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         $stmt->execute(array($_POST["name"]));
         header("Location: admin_page.php");
     }
+    $valid_input = false;
 }
-$valid_input = false;
 
 ?>
 
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet" href="css/form.css">
 <head>
     <title>Create Department</title>
     <meta charset="utf-8">
@@ -40,11 +41,11 @@ $valid_input = false;
             <button type="submit"><a href="admin_page.php">Back</a></button>
         </div>
         <div class="title">
-            <h2>Create a ticket</h2>
+            <h2>Create a Department</h2>
         </div>
 
         <?php if(!$valid_input):?>
-        <em>Please Input a name</em>
+        <p><em>Please Input a name</em></p>
         <?php endif; ?>
 
         <form method="POST">

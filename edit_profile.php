@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="style_index.css">
+<link rel="stylesheet" href="css/form.css">
    <head>
       <title>Edit Profile</title>
       <script src="script/script.js"></script>
@@ -82,7 +82,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <br>
       <?php endif; ?>
 
-      <div>
+      <div class="content">
         <form method="post">
             <div>
                 <label for="name">Name</label>
@@ -99,7 +99,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="email" id= "email" name = "email" value=<?php echo $user["email"]?>>
             </div>
 
-            <em>Fields below are not required to change the above ones</em>
+            <p><em>Fields below are not required to change the above ones</em></p>
 
             <div>
                 <label for="old_password">Old Password</label>
