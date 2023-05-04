@@ -18,58 +18,42 @@ $user_in_profile = $stmt->fetch();
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="style_index.css">
+<link rel="stylesheet" href="css/style_index.css">
    <head>
       <title>User Profile</title>
       <script src="script/script.js"></script>
    </head>
 
    <body>
-   <div class="buttons">
-        <div class="index">
-            <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
-        </div>
-        <br>
-        <div class="tickets">
-            <button type="submit"><a href="tickets.php">Tickets</a></button>
-        </div>
-        <br>
-        <div class="faqs">
-            <button type="submit"><a href="faqs.php">Faqs</a></button>
-        </div>
-        <br>
-        <div class="users">
-            <button type="submit"><a href="users.php">UserList</a></button>
-        </div>
-        <br>
-        <div class="profile">
-        <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
-        </div>
-        <br>
-        <?php if($user["role"] == "admin"): ?>
-        <div class="admin_page">
-            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
-        </div>
-        <br>
-        <?php endif; ?>
-        <div class="logout">
-            <button type="submit"><a href="logout.php">Logout</a></button>
-        </div>
+    <div class="container_master">
+      <div class="container">
+        <ul class="buttons">
+            <li class="index"><a href="index.php">Início</a></li>
+            <li class="tickets"><a href="tickets.php">Tickets</a></li>
+            <li class="faqs"><a href="faqs.php">FAQ's</a></li>
+            <li class="users"><a href="users.php">UserList</a></li>
+            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <?php if($user["role"] == "admin"): ?>
+            <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
+            <?php endif; ?>
+            <li class="logout"><a href="logout.php">Logout</a></li>
+        </ul>
       </div>
+      <div class="content">
+        <div>
+          <h3>Name: <?php echo $user_in_profile["name"]?></h3>
+          <h3>Username: <?php echo $user_in_profile["username"]?></h3>
+          <h3>Email: <?php echo $user_in_profile["email"]?></h3>
+          <h3>Role: <?php echo $user_in_profile["role"]?></h3>
+        </div>
 
-      <br>
-      <div>
-        <h3>Name: <?php echo $user_in_profile["name"]?></h3>
-        <h3>Username: <?php echo $user_in_profile["username"]?></h3>
-        <h3>Email: <?php echo $user_in_profile["email"]?></h3>
-        <h3>Role: <?php echo $user_in_profile["role"]?></h3>
+        <?php if($user["id"] == $user_in_profile["id"]):?>
+        <div class="edit">
+          <a href="edit_profile.php">Edit Profile</a>
+        </div>
+        <?php endif;?>
       </div>
-
-      <?php if($user["id"] == $user_in_profile["id"]):?>
-      <div class="edit">
-        <button type="submit"><a href="edit_profile.php">Edit Profile</a></button>
-      </div>
-      <?php endif;?>
+    </div>
    </body>
 
 </html>

@@ -34,54 +34,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="style_index.css">
+<link rel="stylesheet" href="css/style_index.css">
    <head>
       <title>AdminPage</title>
       <script src="script/script.js"></script>
    </head>
    <body>
-   <div class="buttons">
-        <div class="index">
-            <button type="submit" ><a href = "index.php"><b>Início</b></a></button>
-        </div>
-        <br>
-        <div class="tickets">
-            <button type="submit"><a href="tickets.php">Tickets</a></button>
-        </div>
-        <br>
-        <div class="faqs">
-            <button type="submit"><a href="faqs.php">Faqs</a></button>
-        </div>
-        <br>
-        <div class="users">
-            <button type="submit"><a href="users.php">UserList</a></button>
-        </div>
-        <br>
-        <div class="profile">
-        <button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button>
-        </div>
-        <br>
-        <?php if($user["role"] == "admin"): ?>
-        <div class="admin_page">
-            <button type="submit"><a href="admin_page.php">Admin Page</a></button>
-        </div>
-        <br>
-        <?php endif; ?>
-        <div class="logout">
-            <button type="submit"><a href="logout.php">Logout</a></button>
-        </div>
-      </div>
+   <div class="container_master">
+    <div class="container">
+        <ul class="buttons">
+            <li class="index"><a href="index.php">Início</a></li>
+            <li class="tickets"><a href="tickets.php">Tickets</a></li>
+            <li class="faqs"><a href="faqs.php">FAQ's</a></li>
+            <li class="users"><a href="users.php">UserList</a></li>
+            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <?php if($user["role"] == "admin"): ?>
+            <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
+            <?php endif; ?>
+            <li class="logout"><a href="logout.php">Logout</a></li>
+        </ul>
+    </div>
 
-      <div>
+    <div class="content">
+        <div class="content_department">
         <h3>Departments</h3>
-        <a href="create_department.php">Create department</a>
         <form method="POST" action="admin_page.php">
         <table>
         <thead>
             <tr>
                 <th>ID</th>
                 <th>Name</th>
-                <th>Delete</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -104,10 +87,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             ?>
         </tbody>
       </table>
+      <br>
+      <a href="create_department.php">Create department</a>
       </form>
       </div>
 
-      <div>
+      <div class="content_user">
         <h3>Users</h3>
         <form method="POST" action="admin_page.php">
         <table>
@@ -117,8 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                 <th>Name</th>
                 <th>Username</th>
                 <th>Role</th>
-                <th>Update role</th>
-                <th>Delete User</th>
+        
             </tr>
         </thead>
         <tbody>
@@ -137,8 +121,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
                     <td>" . $user_list['name'] . "</td>
                     <td>" . $user_list['username'] . "</td>
                     <td>" . $user_list['role'] . "</td>
-                    <td><button type='submit' name='update_user' value='".$user_list['id']."'>Update Role</button></td>
-                    <td><button type='submit' name='del_user' value='".$user_list['id']."'>Delete</button></td>
+                    <td class='update_no_borders'><button type='submit' name='update_user' value='".$user_list['id']."'>Update Role</button>
+                    <button type='submit' name='del_user' value='".$user_list['id']."'>Delete</button></td>
                 </tr>";   
                }
 
@@ -147,5 +131,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
       </table>
       </form>
       </div>
+   <div>
+   </div>    
    </body>
 </html>
