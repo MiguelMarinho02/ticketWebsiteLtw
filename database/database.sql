@@ -7,6 +7,8 @@ CREATE TABLE user(
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     role VARCHAR(10) CHECK(role = 'client' or role = 'agent' or role = 'admin') NOT NULL
+    department_id INTEGER,
+    FOREIGN KEY (department_id) REFERENCES department(id)
 );
 
 DROP TABLE IF EXISTS department;

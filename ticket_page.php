@@ -10,12 +10,12 @@ if (!isset($_SESSION["user_id"])){
 $db = getDatabaseConnection();
 $user = searchUser($_SESSION["user_id"]);
 
-$stmt = $db->prepare('SELECT * FROM user WHERE username = ?');
-$stmt->execute(array($_GET["username"]));
-$user_in_profile = $stmt->fetch();
+$stmt = $db->prepare('SELECT * FROM tickets WHERE id = ?');
+$stmt->execute(array($_GET["ticket_id"]));
+$ticket_to_display = $stmt->fetch();
 
-if($user_in_profile == null){
-  header("Location: users.php");
+if($ticket_to_display == null){
+    header("Location: tickets.php");
 }
 
 ?>
