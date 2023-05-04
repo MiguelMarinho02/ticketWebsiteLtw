@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
             <li class="tickets"><a href="tickets.php">Tickets</a></li>
             <li class="faqs"><a href="faqs.php">FAQ's</a></li>
             <li class="users"><a href="users.php">UserList</a></li>
-            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <li class="profile"><button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button></li>
             <?php if($user["role"] == "admin"): ?>
             <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
             <?php endif; ?>

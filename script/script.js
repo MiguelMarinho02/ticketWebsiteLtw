@@ -25,6 +25,10 @@ if(searchInput != null){
     })
 }
 
-function sendData(username) {
+function sendDataUser(username) {
     window.location.href = "user_profile.php?username=" + encodeURIComponent(username);
+}
+
+function sendDataTicket(ticket_id) {
+    window.location.href = "ticket_page.php?ticket_id=" + encodeURIComponent(ticket_id);
 }

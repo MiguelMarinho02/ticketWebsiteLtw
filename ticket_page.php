@@ -18,6 +18,10 @@ if($ticket_to_display == null){
     header("Location: tickets.php");
 }
 
+if($user == null){
+  header("Location: index.php");
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +40,7 @@ if($ticket_to_display == null){
             <li class="tickets"><a href="tickets.php">Tickets</a></li>
             <li class="faqs"><a href="faqs.php">FAQ's</a></li>
             <li class="users"><a href="users.php">UserList</a></li>
-            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <li class="profile"><button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button></li>
             <?php if($user["role"] == "admin"): ?>
             <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
             <?php endif; ?>
@@ -45,15 +49,15 @@ if($ticket_to_display == null){
       </div>
       <div class="content">
         <div>
-          <h3>Name: <?php echo $user_in_profile["name"]?></h3>
-          <h3>Username: <?php echo $user_in_profile["username"]?></h3>
-          <h3>Email: <?php echo $user_in_profile["email"]?></h3>
-          <h3>Role: <?php echo $user_in_profile["role"]?></h3>
+          <h3>Created By: <?php $user = searchUser($ticket_to_display["client_id"]); echo $user["name"]?></h3>
+          <h3>Agent assigned: <?php $user = searchUser($ticket_to_display["agent_id"]); if($user != null){echo $user["name"];}else{echo "N/A";}?></h3>
+          <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
+          <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
         </div>
 
-        <?php if($user["id"] == $user_in_profile["id"]):?>
-        <div class="edit">
-          <a href="edit_profile.php">Edit Profile</a>
+        <?php if($user["role"] != "client" && $ticket_to_display["agent_id"] == null):?>
+        <div class="addAgent">
+          
         </div>
         <?php endif;?>
       </div>
