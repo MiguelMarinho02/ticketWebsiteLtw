@@ -65,8 +65,9 @@ $departments = $stmt->fetchAll();
                 $none_option = "---";
                 echo "<option value='null'>$none_option</option>";
                 foreach($departments as $department){
-                    $d = $department['name'];
-                    echo "<option value='$d'>$d</option>";
+                    $d_name = $department['name'];
+                    $department_id = $department['id'];
+                    echo "<option value='$department_id'>$d_name</option>";
                 }
                 echo "</select>";
             ?>
