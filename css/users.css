@@ -1,0 +1,18 @@
+.search_wrapper {
+    background-color: #afafaf;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 30px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search_wrapper label {
+    font-weight: bold;
+    font-size: larger;
+  }
+  
+  .search_wrapper input[type="text"] {
+    width: 400px;
+    height: 10px;
+  }
+  

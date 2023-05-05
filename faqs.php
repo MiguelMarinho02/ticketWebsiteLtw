@@ -26,6 +26,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <link rel="stylesheet" href="css/style_index.css">
+<link rel="stylesheet" href="css/faq.css">
    <head>
       <title>Index</title>
       <script src="script/script.js"></script>
@@ -46,7 +47,13 @@
             <li class="logout"><a href="logout.php">Logout</a></li>
         </ul>
     </div>
-    <div class="content">            
+    <div class="content">  
+      <?php if($user["role"] != "client"): ?>
+        <div class="create_faq_master">
+          <h3 class="question">ahahhahahsoasoaoSA</h3> 
+          <div class="create_faq"><a href="create_faq.php">Create FAQ</a></div>
+        </div>  
+      <?php endif; ?>          
       <form method="POST" action="faqs.php">
       <?php
       foreach ($faqs as $faq) {
@@ -62,12 +69,6 @@
       }
       ?>
       </form>
-      <br>
-      <?php if($user["role"] != "client"): ?>
-      <div class="create_faq">
-        <a href="create_faq.php">Create FAQ</a>
-      </div>
-      <?php endif; ?>
     </div>
     </div>
    </body>

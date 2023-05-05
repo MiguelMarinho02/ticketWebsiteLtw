@@ -51,6 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </form>
         <div class ="ref">
            <a href="signup.php">SignUp</a>
-        </div>
+        </div>     
     </body>
-</html>        
+</html>
+        

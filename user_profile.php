@@ -19,6 +19,7 @@ $user_in_profile = $stmt->fetch();
 <!DOCTYPE html>
 <html lang="en-US">
 <link rel="stylesheet" href="css/style_index.css">
+<link rel="stylesheet" href="css/user_profile.css">
    <head>
       <title>User Profile</title>
       <script src="script/script.js"></script>

@@ -1,0 +1,45 @@
+.create_faq a{
+    text-decoration: none;
+    color: white;
+  }
+  
+.create_faq{
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 3px 10px;
+  padding-top: 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px 2.5px;
+  cursor: pointer;
+  width: 100px;
+  border-radius: 4px;
+}
+  
+  input[name='btnsubmit'] {
+    background-color: #c20000;
+    border: none;
+    color: white;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-bottom: 30px;
+  }
+
+.create_faq_master{
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 40px;
+}
+
+.create_faq_master h3{
+  margin-right: 30px;
+}
