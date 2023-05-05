@@ -1,6 +1,7 @@
 <?php
 declare(strict_types = 1);
 require_once('connection.php');
+require_once('functions.php');
 session_start();
 $db = getDatabaseConnection();
 
@@ -8,11 +9,9 @@ if (!isset($_SESSION["user_id"])){
  header("Location: login.php");
 }
 
-$stmt = $db->prepare('SELECT * FROM user WHERE id = ? and role = "admin"');
-$stmt->execute(array($_SESSION["user_id"]));
-$user = $stmt->fetch();
+$user = searchUser($_SESSION["user_id"]);
 
-if($user == false){
+if($user["role"] != "admin"){
  header("Location: index.php");
 }
 

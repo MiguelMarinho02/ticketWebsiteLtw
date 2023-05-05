@@ -9,13 +9,8 @@
     header("Location: login.php");
    }
 
-   $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-   $stmt->execute(array($_SESSION["user_id"]));
-   $user = $stmt->fetch();
+   $user = searchUser($_SESSION["user_id"]);
 
-   $stmt = $db->prepare('SELECT * FROM tickets');
-   $stmt->execute();
-   $tickets = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>

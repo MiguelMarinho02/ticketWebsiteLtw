@@ -2,6 +2,13 @@
 
 require_once('connection.php');
 $valid_login = true;
+session_start();
+
+if(isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $db = getDatabaseConnection();
     $stmt = $db->prepare('SELECT * FROM user WHERE email = ?');
