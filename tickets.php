@@ -9,13 +9,8 @@
     header("Location: login.php");
    }
 
-   $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-   $stmt->execute(array($_SESSION["user_id"]));
-   $user = $stmt->fetch();
+   $user = searchUser($_SESSION["user_id"]);
 
-   $stmt = $db->prepare('SELECT * FROM tickets');
-   $stmt->execute();
-   $tickets = $stmt->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +30,7 @@
             <li class="tickets"><a href="tickets.php">Tickets</a></li>
             <li class="faqs"><a href="faqs.php">FAQ's</a></li>
             <li class="users"><a href="users.php">UserList</a></li>
-            <li class="profile"><button onclick="sendData('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <li class="profile"><button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button></li>
             <?php if($user["role"] == "admin"): ?>
             <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
             <?php endif; ?>

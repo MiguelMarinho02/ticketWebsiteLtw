@@ -2,15 +2,14 @@
 
 declare(strict_types = 1);
 require_once('connection.php');
+require_once('functions.php');
 session_start();
 if (!isset($_SESSION["user_id"])){
     header("Location: login.php");
 }
 $db = getDatabaseConnection();
 
-$stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
-$stmt->execute(array($_SESSION["user_id"]));
-$user = $stmt->fetch();
+$user = searchUser($_SESSION["user_id"]);
 
 $success = true;
 
@@ -70,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
    <body>
       <div class="buttons">
         <div class="profile">
-        <button onclick="sendData('<?php echo $user['username'] ?>')">Back</button>
+        <button onclick="sendDataUser('<?php echo $user['username'] ?>')">Back</button>
         </div>
         <br>
 

@@ -2,6 +2,12 @@
 
 require_once('connection.php');
 
+session_start();
+if(isset($_SESSION['user_id'])) {
+    header("Location: index.php");
+    exit();
+}
+
 $error_msg;
 $valid_login = true;
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
