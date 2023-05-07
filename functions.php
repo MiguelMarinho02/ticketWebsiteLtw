@@ -81,4 +81,12 @@ function searchDepartment($department_id){
     return $department;
 }
 
+function getAllDepartments(){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM department');
+    $stmt->execute();
+    $departments = $stmt->fetchAll();
+    return $departments;
+}
+
 ?>

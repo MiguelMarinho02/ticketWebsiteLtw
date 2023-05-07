@@ -11,6 +11,7 @@ if (!isset($_SESSION["user_id"])){
 
 $db = getDatabaseConnection();
 $user = searchUser($_SESSION["user_id"]);
+date_default_timezone_set('Europe/London');
 
 if($user == null){
   header("Location: index.php");
@@ -20,10 +21,39 @@ $stmt = $db->prepare('SELECT * FROM tickets WHERE id = ?');
 $stmt->execute(array($_GET["ticket_id"]));
 $ticket_to_display = $stmt->fetch();
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateTicketWithAgent"])) {
+//remove or update current agent
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateAgent"])) {
   $updated_at = date("F j, Y, g:i a");
-  $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ? WHERE id = ?');
-  $stmt->execute(array($user["id"],$updated_at,$ticket_to_display["id"]));
+  echo $_POST["updateAgent"];
+
+  if($_POST["userId"] == "N/A"){
+    $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ?, status = ? WHERE id = ?');
+    $stmt->execute(array(null,$updated_at,"open",$ticket_to_display["id"]));
+  }
+  else{
+    if($_POST["userId"] != $ticket_to_display["client_id"]){
+      $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ?, status = ? WHERE id = ?');
+      $stmt->execute(array($_POST['userId'],$updated_at,"assigned",$ticket_to_display["id"])); 
+    }
+  }
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
+}
+
+//change the department
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["department"])) {
+  $updated_at = date("F j, Y, g:i a");
+  $stmt = $db->prepare('UPDATE tickets set department_id = ?, updated_at = ? WHERE id = ?');
+  $stmt->execute(array($_POST["department"],$updated_at,$ticket_to_display["id"]));
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
+}
+
+//change the status
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["status"])) {
+  $updated_at = date("F j, Y, g:i a");
+  $stmt = $db->prepare('UPDATE tickets set status = ?, updated_at = ? WHERE id = ?');
+  $stmt->execute(array($_POST["status"],$updated_at,$ticket_to_display["id"]));
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
 }
@@ -38,8 +68,8 @@ if($ticket_to_display == null){
 <html lang="en-US">
 <link rel="stylesheet" href="css/style_index.css">
    <head>
-      <title>User Profile</title>
-      <script src="script/script.js"></script>
+      <title>TicketPage</title>
+      <script src="script/script.js" defer></script>
    </head>
 
    <body>
@@ -63,16 +93,58 @@ if($ticket_to_display == null){
           <h3>Agent assigned: <?php $search_user = searchUser($ticket_to_display["agent_id"]); if($search_user != null){echo $search_user["name"];}else{echo "N/A";}?></h3>
           <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
           <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
+          <h3>Status: <?php echo $ticket_to_display["status"]; ?></h3>
         </div>
 
-        <?php if(($user["role"] != "client" && $ticket_to_display["agent_id"] == null) && ($user["id"] != $ticket_to_display["client_id"])):?>
-        <div class="addAgent"> 
+        <?php if(($user["role"] != "client")):?>
+
+        <?php if ($ticket_to_display["status"] != "closed"): ?>
+            
+            <div>
+              <form method="POST">
+                <input type="hidden" value="N/A" name="userId">
+                <input type="submit" value="Remove current Agent" name="updateAgent">
+              </form>
+            </div>
+            <br>
+
+            <div class="search_wrapper">
+              <label for="search">Search Users</label><br>
+              <input type="search" id="search_user_ticket" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+            </div>
+
+            <div id="search-result">
+            </div>
+            <br>
+        <?php endif; ?>
+
         <form method="POST">
-          <input type="hidden" name="updateTicketWithAgent" value="updateTicketWithAgent">
-          <button type="submit">Assign to self</button>
+          <label for="department">Department</label>
+            <?php
+              $departments = getAllDepartments();
+              echo "<select name='department' class='department'>";
+              foreach($departments as $department){
+                $d_name = $department['name'];
+                $department_id = $department['id'];
+                echo "<option value='$department_id'>$d_name</option>";
+              }
+              echo "</select>";
+            ?>
+            <br>       
+            <input type="submit" value="Change Department">
         </form>
-        </div>
-        <?php endif;?>
+
+        <br>
+        <form method="POST">
+          <label for="status">Status</label>
+          <select name="status" class="status">
+            <option value="open">open</option>
+            <option value="closed">closed</option>
+          </select> 
+          <br>       
+          <input type="submit" value="Change Status">
+        </form>  
+        <?php endif;?>  
       </div>
     </div>
    </body>

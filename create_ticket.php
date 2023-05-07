@@ -5,6 +5,7 @@ require_once('connection.php');
 if (!isset($_SESSION["user_id"])){
     header("Location: login.php");
 }
+date_default_timezone_set('Europe/London');
 $db = getDatabaseConnection();
 $valid_ticket = 2;
 

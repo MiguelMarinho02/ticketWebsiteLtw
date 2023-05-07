@@ -7,8 +7,8 @@ $db = getDatabaseConnection();
 $search_input = $_GET["value"];
 $search_input = '%' . $search_input . '%';
 
-$stmt = $db->prepare('SELECT username,name,role FROM user WHERE username LIKE ? or name LIKE ?');
-$stmt->execute(array($search_input,$search_input));
+$stmt = $db->prepare('SELECT id,username,name,role FROM user WHERE (username LIKE ? or name LIKE ?) and role != ?');
+$stmt->execute(array($search_input,$search_input,"client"));
 $results = $stmt->fetchAll();
 
 if($results == null){
@@ -18,6 +18,7 @@ if($results == null){
 $html = '<table>
 <thead>
     <tr>
+        <th>Assign</th>
         <th>Username</th>
         <th>Name</th>
         <th>Role</th>
@@ -26,8 +27,10 @@ $html = '<table>
 <tbody>
 <tr>';
 foreach ($results as $result) {
+    
     $html .= "<tr>
-    <td> <button onclick=sendDataUser('". $result['username'] ."')>". $result['username'] ."</button></td>
+    <td> <form method='POST'><label for='updateAgent'></label><input type='hidden' name='userId' value='". $result['id'] ."'><input type='submit' name='updateAgent' value='Click here to assign'><br></form>
+    <td>" . $result['username'] . "</td>
     <td>" . $result['name'] . "</td>
     <td>" . $result['role'] . "</td>
     </tr>";
