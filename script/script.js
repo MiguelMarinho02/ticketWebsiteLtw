@@ -52,6 +52,10 @@ function sendDataTicket(ticket_id) {
     window.location.href = "ticket_page.php?ticket_id=" + encodeURIComponent(ticket_id);
 }
 
+function sendDataTicketList(ticket_id) {
+    window.location.href = "list_of_changes.php?ticket_id=" + encodeURIComponent(ticket_id);
+}
+
 function indexPage(){
     window.location='index.php';
 }

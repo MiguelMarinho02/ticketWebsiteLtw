@@ -30,14 +30,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateAgent"])) {
     $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ?, status = ? WHERE id = ?');
     $stmt->execute(array(null,$updated_at,"open",$ticket_to_display["id"]));
     $db = null;
-    insertChangeToTicket($user["id"],$ticket_to_display["id"],"REMOVED CURRENT AGENT");
+    insertChangeToTicket($user["id"],$ticket_to_display["id"],"Removed current agent");
   }
   else{
     if($_POST["userId"] != $ticket_to_display["client_id"]){
       $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ?, status = ? WHERE id = ?');
       $stmt->execute(array($_POST['userId'],$updated_at,"assigned",$ticket_to_display["id"]));
       $db = null;
-      $msg = "Ticket assigned to " + searchUser($_POST["userId"])["username"];
+      $msg = "Ticket assigned to " . searchUser($_POST["userId"])["username"];
       insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg); 
     }
   }
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["department"])) {
   $stmt = $db->prepare('UPDATE tickets set department_id = ?, updated_at = ? WHERE id = ?');
   $stmt->execute(array($_POST["department"],$updated_at,$ticket_to_display["id"]));
   $db = null;
-  $msg = "Changed department to " + searchDepartment($_POST["department"])["name"];
+  $msg = "Changed department to " . searchDepartment($_POST["department"])["name"];
   insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["status"])) {
   $stmt = $db->prepare('UPDATE tickets set status = ?, updated_at = ? WHERE id = ?');
   $stmt->execute(array($_POST["status"],$updated_at,$ticket_to_display["id"]));
   $db = null;
-  $msg = "Changed status to " + $_POST["status"];
+  $msg = "Changed status to " . $_POST["status"];
   insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
@@ -154,8 +154,21 @@ if($ticket_to_display == null){
           </select> 
           <br>       
           <input type="submit" value="Change Status">
-        </form>  
-        <?php endif;?>  
+        </form>
+        
+        <br>
+        <div class="changes">
+          <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
+        </div>
+
+        <?php endif;?>
+        
+        <br>
+
+        <div class="description">
+          <h3>Description</h3>
+          <p> <?php echo $ticket_to_display["description"] ?> </p>
+        </div>
       </div>
     </div>
    </body>

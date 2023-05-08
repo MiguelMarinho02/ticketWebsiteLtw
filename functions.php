@@ -96,4 +96,12 @@ function insertChangeToTicket($user_id,$ticket_id,$change){
     $db = null;
 }
 
+function searchTicket($ticket_id){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM tickets WHERE id = ?');
+    $stmt->execute(array($ticket_id));
+    $ticket = $stmt->fetch();
+    return $ticket;
+}
+
 ?>
