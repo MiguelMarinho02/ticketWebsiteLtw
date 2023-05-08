@@ -26,15 +26,15 @@
     <div class="container_master">
         <div class="container">          
         <ul class="buttons">
-            <li class="index"><a href="index.php">Início</a></li>
-            <li class="tickets"><a href="tickets.php">Tickets</a></li>
-            <li class="faqs"><a href="faqs.php">FAQ's</a></li>
-            <li class="users"><a href="users.php">UserList</a></li>
-            <li class="profile"><button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <button class="index" onclick="indexPage()">Início</button>
+            <button class="tickets" onclick="ticketsPage()">Tickets</button>
+            <button class="faqs" onclick="faqsPage()">FAQ's</button>
+            <button class="users" onclick="usersPage()">UserList</button>
+            <button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button>
             <?php if($user["role"] == "admin"): ?>
-            <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
+            <button class="admin_page" onclick="adminPage()">Admin Page</button>
             <?php endif; ?>
-            <li class="logout"><a href="logout.php">Logout</a></li>
+            <button class="logout" onclick="logoutPage()">Logout</button>
         </ul>
         </div>
         

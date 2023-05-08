@@ -51,3 +51,27 @@ function sendDataUser(username) {
 function sendDataTicket(ticket_id) {
     window.location.href = "ticket_page.php?ticket_id=" + encodeURIComponent(ticket_id);
 }
+
+function indexPage(){
+    window.location='index.php';
+}
+
+function ticketsPage(){
+    window.location='tickets.php';
+}
+
+function faqsPage(){
+    window.location='faqs.php';
+}
+
+function usersPage(){
+    window.location='users.php';
+}
+
+function adminPage(){
+    window.location='admin_page.php';
+}
+
+function logoutPage(){
+    window.location='logout.php';
+}

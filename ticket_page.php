@@ -80,7 +80,7 @@ if($ticket_to_display == null){
             <li class="tickets"><a href="tickets.php">Tickets</a></li>
             <li class="faqs"><a href="faqs.php">FAQ's</a></li>
             <li class="users"><a href="users.php">UserList</a></li>
-            <li class="profile"><button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button></li>
+            <button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button>
             <?php if($user["role"] == "admin"): ?>
             <li class="admin_page"><a href="admin_page.php">Admin Page</a></li>
             <?php endif; ?>
