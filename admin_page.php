@@ -116,13 +116,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
                foreach ($users_list as $user_list) {
 
-                //in order to use the option menu we will need ajax apparently
                 echo "<tr>
                     <td>" . $user_list['id'] . "</td>
                     <td>" . $user_list['name'] . "</td>
                     <td>" . $user_list['username'] . "</td>
                     <td>" . $user_list['role'] . "</td>
-                    <td class='update_no_borders'><button type='submit' name='update_user' value='".$user_list['id']."'>Update Role</button>
+                    <td class='update_no_borders'>
                     <button type='submit' name='del_user' value='".$user_list['id']."'>Delete</button></td>
                 </tr>";   
                }

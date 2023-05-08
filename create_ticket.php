@@ -2,12 +2,15 @@
 <?php
 session_start();
 require_once('connection.php');
+require_once('functions.php');
 if (!isset($_SESSION["user_id"])){
     header("Location: login.php");
 }
 date_default_timezone_set('Europe/London');
 $db = getDatabaseConnection();
 $valid_ticket = 2;
+
+$departments = getAllDepartments();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST"){
     $valid_ticket = 1;
@@ -21,15 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     
         $stmt = $db->prepare('INSERT INTO tickets (department_id, client_id, agent_id, subject, description, status, priority, created_at, updated_at) VALUES (?,?,?,?,?, "open",?,?,?)');
         $stmt->execute(array($_POST["department"],$client_id,$agent_id, $_POST["subject"], $_POST["description"], $_POST["priority"], $created_at, $updated_at));
+
+        $lastInsertedId = $db->lastInsertId();
+        $db = null;
+        insertChangeToTicket($_SESSION["user_id"],$lastInsertedId,"Created Ticket");
     }
     else{
         $valid_ticket = 0;
     }
 }
 
-$stmt = $db->prepare('SELECT * FROM department');
-$stmt->execute();
-$departments = $stmt->fetchAll();
 ?>
 <html>
 <link rel="stylesheet" href="css/form.css">

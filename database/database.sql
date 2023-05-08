@@ -6,7 +6,7 @@ CREATE TABLE user(
     username VARCHAR(50) UNIQUE NOT NULL,
     email VARCHAR(50) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
-    role VARCHAR(10) CHECK(role = 'client' or role = 'agent' or role = 'admin') NOT NULL
+    role VARCHAR(10) CHECK(role = 'client' or role = 'agent' or role = 'admin') NOT NULL,
     department_id INTEGER,
     FOREIGN KEY (department_id) REFERENCES department(id)
 );
@@ -66,3 +66,14 @@ CREATE TABLE ticket_hashtags (
   FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE,
   FOREIGN KEY (hashtag_id) REFERENCES hashtags(id) ON DELETE CASCADE
 );
+
+DROP TABLE IF EXISTS changesToTicket;
+CREATE TABLE changesToTicket (
+  id INTEGER PRIMARY KEY,
+  user_id INTEGER,
+  ticket_id INTEGER,
+  change TEXT NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
+  FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE
+);
+

@@ -89,4 +89,11 @@ function getAllDepartments(){
     return $departments;
 }
 
+function insertChangeToTicket($user_id,$ticket_id,$change){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('INSERT INTO changesToTicket (user_id,ticket_id,change)VALUES (?,?,?)');
+    $stmt->execute(array($user_id,$ticket_id,$change));
+    $db = null;
+}
+
 ?>

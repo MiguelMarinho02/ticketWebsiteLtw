@@ -18,6 +18,20 @@ if($user_in_profile == null){
   header("Location: users.php");
 }
 
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["roleChange"])){
+  $stmt = $db->prepare('UPDATE user SET role = ? WHERE id = ?');
+  $stmt->execute(array($_POST["roleChange"],$user_in_profile["id"]));
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
+}
+
+if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
+  $stmt = $db->prepare('UPDATE user SET department_id = ? WHERE id = ?');
+  $stmt->execute(array($_POST["department"],$user_in_profile["id"]));
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -50,7 +64,46 @@ if($user_in_profile == null){
           <h3>Username: <?php echo $user_in_profile["username"]?></h3>
           <h3>Email: <?php echo $user_in_profile["email"]?></h3>
           <h3>Role: <?php echo $user_in_profile["role"]?></h3>
+          <?php if($user_in_profile["role"] == "agent"):?>
+            <h3>Department: <?php echo searchDepartment($user_in_profile["department_id"])["name"]?></h3>
+          <?php endif;?>  
         </div>
+
+        <?php if($user["role"] == "admin" && $user_in_profile["role"] != "admin"):?>
+        <div class="roleChange">
+          <form method="POST">
+            <label for="roleChange">Change Role</label>
+            <select name="roleChange" class="roleChange">
+              <option value="admin">admin</option>
+              <option value="agent">agent</option>
+            </select> 
+            <br>       
+            <input type="submit" value="Change Role">
+          </form>
+        </div>
+        <?php endif;?>
+
+        <br>
+
+        <?php if($user["role"] == "admin" && $user_in_profile["role"] == "agent"):?>
+        <div class="departmentChange">
+          <form method="POST">
+            <label for="department">Change Department</label>
+            <?php
+              $departments = getAllDepartments();
+              echo "<select name='department' class='department'>";
+              foreach($departments as $department){
+                $d_name = $department['name'];
+                $department_id = $department['id'];
+                echo "<option value='$department_id'>$d_name</option>";
+              }
+              echo "</select>";
+            ?>
+            <br>       
+            <input type="submit" value="Change Department">
+          </form>
+        </div>
+        <?php endif;?>
 
         <?php if($user["id"] == $user_in_profile["id"]):?>
         <div class="edit">
