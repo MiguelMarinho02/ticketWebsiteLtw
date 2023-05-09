@@ -104,4 +104,12 @@ function searchTicket($ticket_id){
     return $ticket;
 }
 
+function getMessagesFromTicket($ticket_id){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM message WHERE ticket_id = ?');
+    $stmt->execute(array($ticket_id));
+    $messages = $stmt->fetchAll();
+    return $messages;
+}
+
 ?>

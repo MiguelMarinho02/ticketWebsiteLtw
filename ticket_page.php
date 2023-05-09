@@ -17,9 +17,8 @@ if($user == null){
   header("Location: index.php");
 }
 
-$stmt = $db->prepare('SELECT * FROM tickets WHERE id = ?');
-$stmt->execute(array($_GET["ticket_id"]));
-$ticket_to_display = $stmt->fetch();
+$ticket_to_display = searchTicket($_GET["ticket_id"]);
+$messages = getMessagesFromTicket($ticket_to_display["id"]);
 
 //remove or update current agent
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateAgent"])) {
@@ -69,6 +68,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["status"])) {
   exit();
 }
 
+//send message
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["sendReply"])) {
+  $updated_at = date("F j, Y, g:i a");
+  $stmt = $db->prepare('INSERT INTO message (msg,ticket_id,user_id,created_at) VALUES (?,?,?,?)');
+  $stmt->execute(array($_POST["sendReply"],$ticket_to_display["id"],$user["id"],$updated_at));
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
+}
+
 if($ticket_to_display == null){
     header("Location: tickets.php");
 }
@@ -78,6 +86,7 @@ if($ticket_to_display == null){
 <!DOCTYPE html>
 <html lang="en-US">
 <link rel="stylesheet" href="css/style_index.css">
+<link rel="stylesheet" href="css/ticket_page.css">
    <head>
       <title>TicketPage</title>
       <script src="script/script.js" defer></script>
@@ -169,6 +178,32 @@ if($ticket_to_display == null){
           <h3>Description</h3>
           <p> <?php echo $ticket_to_display["description"] ?> </p>
         </div>
+
+        <br>
+
+        <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>
+        <h3>Chat</h3>
+        <div class="chat">
+
+          <?php
+            foreach($messages as $message){
+              if(searchUser($message["user_id"])["id"] == $user["id"]){
+                echo "<div class='userMsg'> <p>" . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
+                echo "<br>";
+              }
+              else{
+                echo "<div class='otherUserMsg'> <p>".searchUser($message["user_id"])["username"].": " . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
+                echo "<br>";
+              }
+            }
+          ?>
+
+          <form method="POST">
+            <input type="text" placeholder="Type your message..." name="sendReply">
+			      <button>Send</button>
+          </form>
+        </div>
+        <?php endif;?>
       </div>
     </div>
    </body>
