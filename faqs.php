@@ -39,7 +39,7 @@
             <button class="tickets" onclick="ticketsPage()">Tickets</button>
             <button class="faqs" onclick="faqsPage()">FAQ's</button>
             <button class="users" onclick="usersPage()">UserList</button>
-            <button onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button>
+            <button class="user_profile" onclick="sendDataUser('<?php echo $user['username'] ?>')">User Profile</button>
             <?php if($user["role"] == "admin"): ?>
             <button class="admin_page" onclick="adminPage()">Admin Page</button>
             <?php endif; ?>
@@ -54,6 +54,9 @@
             <div class="create_faq"><a href="create_faq.php">Create FAQ</a></div>
           </div>
         </div>  
+      <?php endif; ?>
+      <?php if($user["role"] == "client"): ?>
+        <h3 class="title">FAQ's</h3>
       <?php endif; ?>          
       <form method="POST" action="faqs.php">
       <?php

@@ -15,6 +15,11 @@ body {
 }
 */
 .buttons .admin_page{
+  border-top: none;
+  border-bottom: solid 2px black;
+}
+
+.buttons .user_profile{
   border-bottom: solid 2px black;
 }
 
@@ -37,6 +42,10 @@ body {
   width: 10em;
   border-top: solid 2px black;
   border-right: solid 2px black;
+}
+
+.buttons:nth-last-child(){
+  border-bottom: solid 2px black;
 }
 
 .buttons{
