@@ -1,17 +1,23 @@
 .create_ticket a{
-    text-decoration: none;
-    color: white;
-  }
-  
-  .create_ticket{
-    background-color: #4CAF50; /* Green */
-    border: none;
-    color: white;
-    padding: 1px 5px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 1px 1px;
-    cursor: pointer;
-  }
+  text-decoration: none;
+  color: white;
+}
+
+.create_ticket{
+background-color: #008CBA;
+border: none;
+color: white;
+padding: 1px 5px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 2px 2px;
+cursor: pointer;
+border-radius: 4px;
+}
+
+img{
+width: 50px;
+height: 30px;
+}

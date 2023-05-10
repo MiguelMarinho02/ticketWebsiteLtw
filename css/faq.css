@@ -7,8 +7,7 @@
   background-color: #008CBA;
   border: none;
   color: white;
-  padding: 3px 10px;
-  padding-top: 15px;
+  padding: 12px 10px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
@@ -17,6 +16,7 @@
   cursor: pointer;
   width: 100px;
   border-radius: 4px;
+  display: inline-block;
 }
   
   input[name='btnsubmit'] {
@@ -31,15 +31,42 @@
     margin: 4px 2px;
     cursor: pointer;
     border-radius: 4px;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    margin-bottom: 10px;
   }
 
-.create_faq_master{
+.title-and-button {
   display: flex;
-  flex-direction: row;
-  margin-bottom: 40px;
+  justify-content: space-between; /* add this line to space out the title and button */
+  align-items: center;
 }
 
-.create_faq_master h3{
-  margin-right: 30px;
+.title{
+  font-size: 50px;
+}
+  
+.create_faq_master {
+  margin-right: 10px; /* add this line to add some right margin to the button */
+}
+
+form h3 {
+  border-bottom: 1px solid #ccc;
+  padding-bottom: 10px;
+}
+
+.faq-box {
+  background-color: white;
+  border: 2px solid #4CAF50;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.faq-box h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.faq-box p {
+  margin: 0;
 }

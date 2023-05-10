@@ -27,7 +27,7 @@
 <link rel="stylesheet" href="css/style_index.css">
 <link rel="stylesheet" href="css/faq.css">
    <head>
-      <title>Index</title>
+      <title>FAQ's</title>
       <script src="script/script.js"></script>
    </head>
    <body>
@@ -48,14 +48,17 @@
     </div>
     <div class="content">  
       <?php if($user["role"] != "client"): ?>
-        <div class="create_faq_master">
-          <h3 class="question">ahahhahahsoasoaoSA</h3> 
-          <div class="create_faq"><a href="create_faq.php">Create FAQ</a></div>
+        <div class="title-and-button">
+          <h3 class="title">FAQ's</h3>
+          <div class="create_faq_master">
+            <div class="create_faq"><a href="create_faq.php">Create FAQ</a></div>
+          </div>
         </div>  
       <?php endif; ?>          
       <form method="POST" action="faqs.php">
       <?php
       foreach ($faqs as $faq) {
+        echo "<div class='faq-box'>";
         $answer = $faq['answer'];
         $question = $faq['question'];
         echo "<h3>$question</h3>";
@@ -65,6 +68,7 @@
             echo "<input type='submit' name='btnsubmit' value='Delete'/>";
         }
         echo "<br>";
+        echo "</div>";
       }
       ?>
       </form>
