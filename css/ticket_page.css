@@ -23,7 +23,7 @@ h6 {
 
 .otherUserMsg {
 	align-self: flex-start;
-    background-color: rgb(0, 102, 135);
+    background-color: rgb(145, 145, 145);
     border-radius: 5px;
     padding: 15px;
 }
@@ -48,5 +48,82 @@ form {
 	border-radius: 5px;
 	padding: 10px;
 	font-size: 16px;
+	cursor: pointer;
+}
+
+hr {
+	border: none;
+	border-top: 1px solid #bbbbbb;
+	margin: 20px 0;
+	margin-bottom: 40px;
+}
+
+.box{
+	background-color: #66ff00;
+  	padding: 20px;
+  	margin-bottom: 20px;
+	border-radius: 10px;
+  	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.remove_agent{
+  background-color: #c20000;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  padding: 4px 8px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 2px 1px;
+  cursor: pointer;
+}
+
+.change_department{
+	background-color: #008CBA;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	padding: 3px 6px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 1px 0.5px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+.change_status{
+	background-color: #008CBA;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	padding: 3px 6px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 1px 0.5px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
+select{
+	margin-left: 5px;
+}
+
+.changes button{
+	background-color: rgb(255, 136, 0);
+	border: none;
+	border-radius: 4px;
+	color: black;
+	padding: 4px 8px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+	margin: 2px 1px;
 	cursor: pointer;
 }

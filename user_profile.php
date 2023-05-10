@@ -59,6 +59,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
         </ul>
       </div>
       <div class="content">
+        <div class="information">
         <div>
           <h3>Name: <?php echo $user_in_profile["name"]?></h3>
           <h3>Username: <?php echo $user_in_profile["username"]?></h3>
@@ -72,13 +73,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
         <?php if($user["role"] == "admin" && $user_in_profile["role"] != "admin"):?>
         <div class="roleChange">
           <form method="POST">
-            <label for="roleChange">Change Role</label>
+            <label for="roleChange">Role</label>
             <select name="roleChange" class="roleChange">
               <option value="admin">admin</option>
               <option value="agent">agent</option>
             </select> 
-            <br>       
-            <input type="submit" value="Change Role">
+                  
+            <input class="change_role" type="submit" value="Change Role">
           </form>
         </div>
         <?php endif;?>
@@ -88,7 +89,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
         <?php if($user["role"] == "admin" && $user_in_profile["role"] == "agent"):?>
         <div class="departmentChange">
           <form method="POST">
-            <label for="department">Change Department</label>
+            <label for="department">Department</label>
             <?php
               $departments = getAllDepartments();
               echo "<select name='department' class='department'>";
@@ -99,8 +100,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
               }
               echo "</select>";
             ?>
-            <br>       
-            <input type="submit" value="Change Department">
+                   
+            <input class="change_department" type="submit" value="Change Department">
           </form>
         </div>
         <?php endif;?>
@@ -110,6 +111,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
           <a href="edit_profile.php">Edit Profile</a>
         </div>
         <?php endif;?>
+        </div>    
+
       </div>
     </div>
    </body>

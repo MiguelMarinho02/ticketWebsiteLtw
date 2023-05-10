@@ -47,7 +47,7 @@
         <input type="search" id="search_user" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
       </div>
       
-      <div id="search-result">
+      <div id="search-result" class="table">
       <table>
         <thead>
             <tr>

@@ -53,7 +53,7 @@ function getTicketsTableForUser($paramter){
         if($a_user == null){$a_user["name"] = "N\A";}
                 
         echo "<tr>
-            <td>" .$ticket['id']. "   <button onclick=sendDataTicket('". $ticket['id'] ."')>Go Check</button></td>
+            <td> <button onclick=sendDataTicket('". $ticket['id'] ."')>".$ticket['id']."</button></td>
             <td>" . $department['name'] . "</td>
             <td>" . $c_user['name'] . "</td>
             <td>" . $a_user['name'] . "</td>

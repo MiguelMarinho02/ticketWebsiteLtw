@@ -108,6 +108,7 @@ if($ticket_to_display == null){
         </ul>
       </div>
       <div class="content">
+        <div class="box">
         <div>
           <h3>Created By: <?php $search_user = searchUser($ticket_to_display["client_id"]); echo $search_user["name"]?></h3>
           <h3>Agent assigned: <?php $search_user = searchUser($ticket_to_display["agent_id"]); if($search_user != null){echo $search_user["name"];}else{echo "N/A";}?></h3>
@@ -123,7 +124,7 @@ if($ticket_to_display == null){
             <div>
               <form method="POST">
                 <input type="hidden" value="N/A" name="userId">
-                <input type="submit" value="Remove current Agent" name="updateAgent">
+                <input class="remove_agent" type="submit" value="Remove current Agent" name="updateAgent">
               </form>
             </div>
             <br>
@@ -151,7 +152,7 @@ if($ticket_to_display == null){
               echo "</select>";
             ?>
             <br>       
-            <input type="submit" value="Change Department">
+            <input class="change_department" type="submit" value="Change Department">
         </form>
 
         <br>
@@ -162,7 +163,7 @@ if($ticket_to_display == null){
             <option value="closed">closed</option>
           </select> 
           <br>       
-          <input type="submit" value="Change Status">
+          <input class="change_status" type="submit" value="Change Status">
         </form>
         
         <br>
@@ -178,8 +179,11 @@ if($ticket_to_display == null){
           <h3>Description</h3>
           <p> <?php echo $ticket_to_display["description"] ?> </p>
         </div>
-
+          
         <br>
+
+        </div>
+        <hr>
 
         <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>
         <h3>Chat</h3>
