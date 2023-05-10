@@ -45,19 +45,6 @@
       <br>
 
       <h2>Your Active tickets as client</h2>
-      <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Department</th>
-                <th>Client</th>
-                <th>Agent</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
-            </tr>
-        </thead>
         <tbody>
             <?php
                getTicketsTableForUser(0); //prints clients table
@@ -67,19 +54,6 @@
       <?php if($user["role"] != "client"):?>
       <br>
       <h2>Your Active tickets as agent</h2>
-      <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Department</th>
-                <th>Client</th>
-                <th>Agent</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
-            </tr>
-        </thead>
         <tbody>
             <?php
                getTicketsTableForUser(1); //prints agent table

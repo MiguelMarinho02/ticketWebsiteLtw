@@ -1,10 +1,25 @@
 p {
 	margin: 0;
 	font-size: 24px;
+	margin-bottom: -10px;
 }
 
 h6 {
     font-size: 12px;
+	margin-bottom: -10px;
+}
+
+.otherUserMsg em{
+	font-size: 17px;
+}
+
+.otherUserMsg p{
+	margin-top: 10px;
+	font-family: serif;
+}
+
+.userMsg p{
+	font-family: serif;
 }
 
 .chat {
@@ -19,6 +34,9 @@ h6 {
     background-color: rgb(6, 187, 247);
     border-radius: 5px;
     padding: 15px;
+	max-width: 500px;
+	min-width: 200px;
+	word-wrap: break-word;
 }
 
 .otherUserMsg {
@@ -26,8 +44,10 @@ h6 {
     background-color: rgb(145, 145, 145);
     border-radius: 5px;
     padding: 15px;
+	max-width: 500px;
+	min-width: 200px;
+	word-wrap: break-word;
 }
-
 
 form {
 	display: flex;
@@ -59,11 +79,38 @@ hr {
 }
 
 .box{
-	background-color: #66ff00;
+	background-color: #22c402ce;
   	padding: 20px;
   	margin-bottom: 20px;
 	border-radius: 10px;
   	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.box h3{
+	font-size: 20px;
+}
+
+.box p{
+	font-size: 17px;
+}
+
+h3{
+	font-size: 25px;
+	font-family: sans-serif;
+}
+
+.parent{
+	width: 800px;
+}
+
+.info{
+	width: 300px;
+	float: left;
+}
+
+.options{
+	width: 0px;
+	float: right;
 }
 
 .remove_agent{

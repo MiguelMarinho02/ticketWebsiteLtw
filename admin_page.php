@@ -60,6 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="content_department">
         <h3>Departments</h3>
         <form method="POST" action="admin_page.php">
+        <a href="create_department.php">Create department</a>   
         <table>
         <thead>
             <tr>
@@ -89,7 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         </tbody>
       </table>
       <br>
-      <a href="create_department.php">Create department</a>
       </form>
       </div>
 

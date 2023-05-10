@@ -19,6 +19,11 @@ body {
   border-bottom: solid 2px black;
 }
 
+table thead th em{
+  font-size: 13px;
+  margin-right: -50px;
+}
+
 .buttons .user_profile{
   border-bottom: solid 2px black;
 }

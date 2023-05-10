@@ -35,6 +35,33 @@ function getTicketsTableForUser($paramter){
         $tickets = $stmt->fetchAll();
     }
 
+    if($tickets == null){
+        if($paramter == 0){
+            echo "<h3>You have no tickets as a client</h3>";
+        }
+        if($paramter == 1){
+            echo "<h3>You have no tickets as an agent</h3>";
+        }
+        if($paramter == 2){
+            echo "<h3>There are no tickets</h3>";
+        }
+        return 0;
+    }
+
+    echo "<table>
+    <thead>
+        <tr>
+            <th>ID<br><em>(Press ID to open)</em></th>
+            <th>Department</th>
+            <th>Client</th>
+            <th>Agent</th>
+            <th>Subject</th>
+            <th>Status</th>
+            <th>Priority</th>
+            <th>Date</th>
+        </tr>
+    </thead>";
+
     foreach ($tickets as $ticket) {
 
         $stmt = $db->prepare('SELECT * FROM department WHERE id = ?');

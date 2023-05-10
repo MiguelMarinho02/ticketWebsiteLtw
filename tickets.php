@@ -39,19 +39,9 @@
         </div>
       <div class="content">          
       <h2>Active tickets</h2>
-      <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Department</th>
-                <th>Client</th>
-                <th>Agent</th>
-                <th>Subject</th>
-                <th>Status</th>
-                <th>Priority</th>
-                <th>Date</th>
-            </tr>
-        </thead>
+      <div class="create_ticket">
+        <h3><a href="create_ticket.php">New ticket</a></h3>
+      </div>
         <tbody>
             <?php
                getTicketsTableForUser(2);
@@ -59,9 +49,6 @@
         </tbody>
       </table>
       <br><br>
-      <div class="create_ticket">
-        <h3><a href="create_ticket.php">New ticket</a></h3>
-      </div>
       </div>
     </div>
    </body>

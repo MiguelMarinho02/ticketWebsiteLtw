@@ -18,7 +18,7 @@ if($results == null){
 $html = '<table>
 <thead>
     <tr>
-        <th>Username</th>
+        <th>Username<br><em>(Press to see profile)</em></th>
         <th>Name</th>
         <th>Role</th>
     </tr>

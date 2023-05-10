@@ -109,14 +109,16 @@ if($ticket_to_display == null){
       </div>
       <div class="content">
         <div class="box">
-        <div>
+        <div class="parent">  
+        <div class="info">
           <h3>Created By: <?php $search_user = searchUser($ticket_to_display["client_id"]); echo $search_user["name"]?></h3>
           <h3>Agent assigned: <?php $search_user = searchUser($ticket_to_display["agent_id"]); if($search_user != null){echo $search_user["name"];}else{echo "N/A";}?></h3>
           <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
           <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
           <h3>Status: <?php echo $ticket_to_display["status"]; ?></h3>
         </div>
-
+        
+        <div class="options">
         <?php if(($user["role"] != "client")):?>
 
         <?php if ($ticket_to_display["status"] != "closed"): ?>
@@ -165,6 +167,10 @@ if($ticket_to_display == null){
           <br>       
           <input class="change_status" type="submit" value="Change Status">
         </form>
+
+        </div>
+        </div>
+        <div style="clear: both;"></div>
         
         <br>
         <div class="changes">
@@ -181,7 +187,6 @@ if($ticket_to_display == null){
         </div>
           
         <br>
-
         </div>
         <hr>
 
@@ -196,7 +201,7 @@ if($ticket_to_display == null){
                 echo "<br>";
               }
               else{
-                echo "<div class='otherUserMsg'> <p>".searchUser($message["user_id"])["username"].": " . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
+                echo "<div class='otherUserMsg'> <em>".searchUser($message["user_id"])["username"].":</em><br><p> " . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
                 echo "<br>";
               }
             }
