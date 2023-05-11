@@ -7,7 +7,11 @@ $db = getDatabaseConnection();
 $search_input = $_GET["value"];
 $search_input = '%' . $search_input . '%';
 
-$stmt = $db->prepare('SELECT id,username,name,role FROM user WHERE (username LIKE ? or name LIKE ?) and role != ?');
+if($_GET["value"] == null){
+    exit();
+}
+
+$stmt = $db->prepare('SELECT id,username,name,role FROM user WHERE (username LIKE ? or name LIKE ?) and role != ? LIMIT 3');
 $stmt->execute(array($search_input,$search_input,"client"));
 $results = $stmt->fetchAll();
 

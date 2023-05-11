@@ -92,9 +92,9 @@ function getTicketsTableForUser($paramter){
 }
 }
 
-function getAllUsers(){
+function getAllUsersWithLimit(){
     $db = getDatabaseConnection();
-    $stmt = $db->prepare('SELECT username,name,role FROM user');
+    $stmt = $db->prepare('SELECT username,name,role FROM user LIMIT 10');
     $stmt->execute();
     $users = $stmt->fetchAll();
     return $users;

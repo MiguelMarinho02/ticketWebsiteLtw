@@ -1,15 +1,23 @@
 <?php 
 declare(strict_types = 1);
 require_once('connection.php');
+require_once('functions.php');
 
 $db = getDatabaseConnection();
 
+$limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
 $search_input = $_GET["value"];
-$search_input = '%' . $search_input . '%';
 
-$stmt = $db->prepare('SELECT username,name,role FROM user WHERE username LIKE ? or name LIKE ?');
-$stmt->execute(array($search_input,$search_input));
-$results = $stmt->fetchAll();
+if($search_input == ""){
+    $results = getAllUsersWithLimit();
+}
+
+else{
+    $search_input = '%' . $search_input . '%';
+    $stmt = $db->prepare('SELECT username,name,role FROM user WHERE username LIKE ? or name LIKE ? LIMIT ?');
+    $stmt->execute(array($search_input,$search_input,$limit));
+    $results = $stmt->fetchAll();
+}
 
 if($results == null){
     exit();

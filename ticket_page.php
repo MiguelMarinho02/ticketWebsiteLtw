@@ -167,15 +167,15 @@ if($ticket_to_display == null){
           <br>       
           <input class="change_status" type="submit" value="Change Status">
         </form>
-
-        </div>
-        </div>
-        <div style="clear: both;"></div>
         
         <br>
         <div class="changes">
           <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
         </div>
+
+        </div>
+        </div>
+        <div style="clear: both;"></div>
 
         <?php endif;?>
         

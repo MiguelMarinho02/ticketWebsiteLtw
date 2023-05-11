@@ -48,28 +48,8 @@
       </div>
       
       <div id="search-result" class="table">
-      <table>
-        <thead>
-            <tr>
-                <th>Username<br><em>(Press to see profile)</em></th>
-                <th>Name</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-               $users = getAllUsers();
-               foreach($users as $element){
-                echo "<tr>
-                <td> <button onclick=sendDataUser('". $element['username'] ."')>". $element['username'] ."</button></td>
-                <td>" . $element['name'] . "</td>
-                <td>" . $element['role'] . "</td>
-                </tr>";
-               }
-            ?>
-        </tbody>
-      </table>
       </div>
+      <button id="show-more">Show More</button> 
       </div> <?php //content div ?>
       </div> <?php //container div ?>
     </div>  

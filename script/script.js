@@ -1,5 +1,7 @@
 const searchInput = document.querySelector('#search_user')
 const searchInputForTicket = document.querySelector('#search_user_ticket')
+const showMoreButtonTickets = document.querySelector('#show-more')
+let limitForSearches = 10;
 const request = new XMLHttpRequest();
 
 function encodeForAjax(data) {
@@ -8,11 +10,9 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
-if(searchInput != null){
-    searchInput.addEventListener("input", (e) =>{
-        const value = e.target.value;
-        
-        request.open('get',"search_users.php?" + encodeForAjax({value:value}),true)
+function loadResultsForUsers(limitForSearches){
+    const value = searchInput.value;
+    request.open('get',"search_users.php?" + encodeForAjax({value:value,limit:limitForSearches}),true)
         request.onload = function() {
             if (request.status === 200) {
                 // the response was successful, update the HTML with the new content
@@ -22,8 +22,24 @@ if(searchInput != null){
             console.error('Request failed.  Returned status of ' + request.status);
             }
         };
-        request.send();
-    })
+    request.send();
+}
+
+if(showMoreButtonTickets && searchInput){
+    if(!(searchInput.value)){
+        loadResultsForUsers(10);
+    }
+}
+
+showMoreButtonTickets.addEventListener("click", function() {
+    limitForSearches += 10;
+    loadResultsForUsers(limitForSearches)
+});
+
+if(searchInput != null){
+    searchInput.addEventListener("input", (e) =>{
+       loadResultsForUsers(limitForSearches);
+    });
 }
 
 if(searchInputForTicket != null){

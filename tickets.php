@@ -42,6 +42,11 @@
       <div class="create_ticket">
         <h3><a href="create_ticket.php">New ticket</a></h3>
       </div>
+      
+      <div class="search_wrapper">
+        <label for="search">Search Tickets</label><br>
+        <input type="search" id="search_user" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+      </div>
         <tbody>
             <?php
                getTicketsTableForUser(2);
@@ -49,7 +54,9 @@
         </tbody>
       </table>
       <br><br>
-      </div>
+      <div class="button">
+         <button id="show-more">Show More</button>
+      </div>    
     </div>
    </body>
 
