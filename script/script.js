@@ -31,10 +31,12 @@ if(showMoreButtonTickets && searchInput){
     }
 }
 
-showMoreButtonTickets.addEventListener("click", function() {
-    limitForSearches += 10;
-    loadResultsForUsers(limitForSearches)
-});
+if(showMoreButtonTickets != null){
+    showMoreButtonTickets.addEventListener("click", function() {
+        limitForSearches += 10;
+        loadResultsForUsers(limitForSearches)
+    });
+}
 
 if(searchInput != null){
     searchInput.addEventListener("input", (e) =>{
@@ -45,6 +47,7 @@ if(searchInput != null){
 if(searchInputForTicket != null){
     searchInputForTicket.addEventListener("input", (e) =>{
         const value = e.target.value;
+        console.log(1);
         
         request.open('get',"search_users_ticket.php?" + encodeForAjax({value:value}),true)
         request.onload = function() {

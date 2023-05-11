@@ -20,13 +20,13 @@ function getTicketsTableForUser($paramter){
     $user = searchUser($_SESSION["user_id"]);
 
     if($paramter == 0){
-        $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ?');
-        $stmt->execute(array($user["id"]));
+        $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ? and status != ?');
+        $stmt->execute(array($user["id"],"closed"));
         $tickets = $stmt->fetchAll();
     }
     else if($paramter == 1){
-        $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ?');
-        $stmt->execute(array($user["id"]));
+        $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ? and status != ?');
+        $stmt->execute(array($user["id"],"closed"));
         $tickets = $stmt->fetchAll();
     }
     else if($paramter == 2){ 
