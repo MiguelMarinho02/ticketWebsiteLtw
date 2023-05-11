@@ -9,7 +9,7 @@ $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
 $search_input = $_GET["value"];
 
 if($search_input == ""){
-    $results = getAllUsersWithLimit();
+    $results = getAllUsersWithLimit($limit);
 }
 
 else{
@@ -20,6 +20,7 @@ else{
 }
 
 if($results == null){
+    echo "No results found";
     exit();
 }
 

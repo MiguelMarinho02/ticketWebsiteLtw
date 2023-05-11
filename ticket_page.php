@@ -68,6 +68,37 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["status"])) {
   exit();
 }
 
+//apply tag
+$error = false;
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST["tag"]) && $_POST["tag"] != "")) {
+
+  $tag = searchTag($_POST["tag"]);
+  if($tag == null){
+    $db = null;
+    insertTag($_POST["tag"]);
+    $db = getDatabaseConnection();
+    $tag = searchTag($_POST["tag"]);
+  }
+  
+  $error = checkIfTagIsAssociated($tag["id"],$ticket_to_display["id"]);
+
+  if($error){
+    
+  }
+  else{
+    $stmt = $db->prepare('INSERT INTO ticket_hashtags (hashtag_id,ticket_id) VALUES (?,?)');
+    $stmt->execute(array($tag["id"],$ticket_to_display["id"]));
+    $updated_at = date("F j, Y, g:i a");
+    $stmt = $db->prepare('UPDATE tickets set updated_at = ? WHERE id = ?');
+    $stmt->execute(array($updated_at,$ticket_to_display["id"]));
+    $db = null;
+    $msg = "Added tag " . $_POST["tag"];
+    insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+    header("Location: {$_SERVER['REQUEST_URI']}");
+    exit();
+  }
+}
+
 //send message
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["sendReply"])) {
   $updated_at = date("F j, Y, g:i a");
@@ -116,6 +147,11 @@ if($ticket_to_display == null){
           <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
           <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
           <h3>Status: <?php echo $ticket_to_display["status"]; ?></h3>
+          <?php if(($user["role"] != "client")):?>
+          <div class="changes">
+            <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
+          </div>
+          <?php endif; ?>
         </div>
         
         <div class="options">
@@ -167,11 +203,17 @@ if($ticket_to_display == null){
           <br>       
           <input class="change_status" type="submit" value="Change Status">
         </form>
-        
         <br>
-        <div class="changes">
-          <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
-        </div>
+
+        <form method="POST">
+          <div class="search_wrapper">
+              <label for="tag">Apply Tag</label><br>
+              <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
+              <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+              <br>
+              <input class="addTag" type="submit" value="Apply">
+          </div>
+        </form>
 
         </div>
         </div>
@@ -179,8 +221,7 @@ if($ticket_to_display == null){
 
         <?php endif;?>
         
-        <br>
-
+        <hr>
         <div class="description">
           <h3>Description</h3>
           <p> <?php echo $ticket_to_display["description"] ?> </p>
@@ -188,6 +229,10 @@ if($ticket_to_display == null){
           
         <br>
         </div>
+        <?php if($user["role"] == "client"): //wtf is this? Either me or css really is fkn terrible?>
+          </div>;
+          </div>;
+        <?php endif;?>
         <hr>
 
         <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>

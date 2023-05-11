@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="css/tickets.css">
    <head>
       <title>Tickets</title>
-      <script src="script/script.js"></script>
+      <script src="script/script.js" defer></script>
    </head>
 
    <body>
@@ -45,17 +45,13 @@
       
       <div class="search_wrapper">
         <label for="search">Search Tickets</label><br>
-        <input type="search" id="search_user" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+        <input type="search" id="search-tickets" placeholder="Search by tag.." style="width: 300px; height: 30px; margin-top: 7px;">
       </div>
-        <tbody>
-            <?php
-               getTicketsTableForUser(2);
-            ?>
-        </tbody>
-      </table>
+      <div id="ticket-results">
+      </div>  
       <br><br>
       <div class="button">
-         <button id="show-more">Show More</button>
+         <button id="show-more-tickets">Show More</button>
       </div>    
     </div>
    </body>

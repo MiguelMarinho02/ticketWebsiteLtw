@@ -49,7 +49,7 @@
       
       <div id="search-result" class="table">
       </div>
-      <button id="show-more">Show More</button> 
+      <button id="show-more-user">Show More</button> 
       </div> <?php //content div ?>
       </div> <?php //container div ?>
     </div>  
