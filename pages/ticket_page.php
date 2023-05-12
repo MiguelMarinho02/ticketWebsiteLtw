@@ -126,7 +126,7 @@ if($ticket_to_display == null){
    <body>
     <div class="container_master">
       <div class="container">
-      <ul class="buttons">
+        <ul class="buttons">
             <button class="index" onclick="indexPage()">Início</button>
             <button class="tickets" onclick="ticketsPage()">Tickets</button>
             <button class="faqs" onclick="faqsPage()">FAQ's</button>
@@ -138,127 +138,128 @@ if($ticket_to_display == null){
             <button class="logout" onclick="logoutPage()">Logout</button>
         </ul>
       </div>
+      
       <div class="content">
         <div class="box">
-        <div class="parent">  
-        <div class="info">
-          <h3>Created By: <?php $search_user = searchUser($ticket_to_display["client_id"]); echo $search_user["name"]?></h3>
-          <h3>Agent assigned: <?php $search_user = searchUser($ticket_to_display["agent_id"]); if($search_user != null){echo $search_user["name"];}else{echo "N/A";}?></h3>
-          <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
-          <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
-          <h3>Status: <?php echo $ticket_to_display["status"]; ?></h3>
-          <?php if(($user["role"] != "client")):?>
-          <div class="changes">
-            <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
-          </div>
-          <?php endif; ?>
-        </div>
-        
-        <div class="options">
-        <?php if(($user["role"] != "client")):?>
-
-        <?php if ($ticket_to_display["status"] != "closed"): ?>
+          <div class="group">
+          <div class="info">
+            <h3>Created By: <?php $search_user = searchUser($ticket_to_display["client_id"]); echo $search_user["name"]?></h3>
+            <h3>Agent assigned: <?php $search_user = searchUser($ticket_to_display["agent_id"]); if($search_user != null){echo $search_user["name"];}else{echo "N/A";}?></h3>
+            <h3>Department: <?php $department = searchDepartment($ticket_to_display["department_id"]);if($department != null){echo $department["name"];}else{echo "N/A";}?></h3>
+            <h3>Last updated: <?php if($ticket_to_display["updated_at"] == null){echo $ticket_to_display["created_at"];}else{echo $ticket_to_display["updated_at"];} ?></h3>
+            <h3>Status: <?php echo $ticket_to_display["status"]; ?></h3>
+            <?php if(($user["role"] != "client")):?>
+              <div class="changes">
+                <button onclick="sendDataTicketList('<?php echo $ticket_to_display['id'] ?>')">List Of Changes</button>
+              </div>
+              <?php if ($ticket_to_display["status"] != "closed"): ?>
             
-            <div>
-              <form method="POST">
-                <input type="hidden" value="N/A" name="userId">
-                <input class="remove_agent" type="submit" value="Remove current Agent" name="updateAgent">
-              </form>
-            </div>
-            <br>
-
-            <div class="search_wrapper">
-              <label for="search">Search Users</label><br>
-              <input type="search" id="search_user_ticket" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
-            </div>
-
-            <div id="search-result">
-            </div>
-            <br>
-        <?php endif; ?>
-
-        <form method="POST">
-          <label for="department">Department</label>
-            <?php
-              $departments = getAllDepartments();
-              echo "<select name='department' class='department'>";
-              foreach($departments as $department){
-                $d_name = $department['name'];
-                $department_id = $department['id'];
-                echo "<option value='$department_id'>$d_name</option>";
-              }
-              echo "</select>";
-            ?>
-            <br>       
-            <input class="change_department" type="submit" value="Change Department">
-        </form>
-
-        <br>
-        <form method="POST">
-          <label for="status">Status</label>
-          <select name="status" class="status">
-            <option value="open">open</option>
-            <option value="closed">closed</option>
-          </select> 
-          <br>       
-          <input class="change_status" type="submit" value="Change Status">
-        </form>
-        <br>
-
-        <form method="POST">
-          <div class="search_wrapper">
-              <label for="tag">Apply Tag</label><br>
-              <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
-              <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
-              <br>
-              <input class="addTag" type="submit" value="Apply">
+                <div>
+                  <form method="POST">
+                    <input type="hidden" value="N/A" name="userId">
+                    <input class="remove_agent" type="submit" value="Remove current Agent" name="updateAgent">
+                  </form>
+                </div>
+                <br>
+              <?php endif; ?>
+            <?php endif; ?>
           </div>
-        </form>
+          
+          <div class="options">
+            <?php if(($user["role"] != "client")):?>
+              <?php if ($ticket_to_display["status"] != "closed"): ?>
 
-        </div>
-        </div>
-        <div style="clear: both;"></div>
+                <div class="right-group">  
+                  <div class="search_wrapper">
+                    <label for="search">Search Users</label><br>
+                    <input type="search" id="search_user_ticket" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+                  </div>
 
-        <?php endif;?>
-        
-        <hr>
-        <div class="description">
-          <h3>Description</h3>
-          <p> <?php echo $ticket_to_display["description"] ?> </p>
+                  <div id="search-result">
+                  </div>
+                </div>
+
+                <form method="POST">
+                  <label for="department">Department</label>
+                  <?php
+                    $departments = getAllDepartments();
+                    echo "<select name='department' class='department'>";
+                    foreach($departments as $department){
+                      $d_name = $department['name'];
+                      $department_id = $department['id'];
+                      echo "<option value='$department_id'>$d_name</option>";
+                    }
+                    echo "</select>";
+                  ?>
+                  <br>       
+                  <input class="change_department" type="submit" value="Change Department">
+                </form>
+
+                <br>
+                <form method="POST">
+                  <label for="status">Status</label>
+                  <select name="status" class="status">
+                    <option value="open">open</option>
+                    <option value="closed">closed</option>
+                  </select> 
+                  <br>       
+                  <input class="change_status" type="submit" value="Change Status">
+                </form>
+                <br>
+
+                <form method="POST">
+                  <div class="search_wrapper">
+                    <label for="tag">Apply Tag</label><br>
+                    <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
+                    <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+                    <br>
+                    <input class="addTag" type="submit" value="Apply">
+                  </div>
+                </form>
+
+                <?php endif; ?>
+
+            <?php endif; ?>
+          </div>
+          </div>          
+          <hr>
+          <div class="description">
+            <h3>Description</h3>
+            <p> <?php echo $ticket_to_display["description"] ?> </p>
+          </div>                 
+
         </div>
           
         <br>
-        </div>
-        <?php if($user["role"] == "client"): //wtf is this? Either me or css really is fkn terrible?>
-          </div>;
-          </div>;
-        <?php endif;?>
-        <hr>
+        <hr>  
 
-        <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>
-        <h3>Chat</h3>
-        <div class="chat">
-
-          <?php
-            foreach($messages as $message){
-              if(searchUser($message["user_id"])["id"] == $user["id"]){
-                echo "<div class='userMsg'> <p>" . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
-                echo "<br>";
+        <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>          
+          <div class="chat">
+            <h3>Chat</h3>
+            <?php
+              foreach($messages as $message){
+                if(searchUser($message["user_id"])["id"] == $user["id"]){
+                  echo "<div class='userMsg'> <p>" . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
+                  echo "<br>";
+                }
+                else{
+                  echo "<div class='otherUserMsg'> <em>".searchUser($message["user_id"])["username"].":</em><br><p> " . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
+                  echo "<br>";
+                }
               }
-              else{
-                echo "<div class='otherUserMsg'> <em>".searchUser($message["user_id"])["username"].":</em><br><p> " . $message["msg"] . "</p> <h6>Sent at ".$message["created_at"]."</h6> </div>";
-                echo "<br>";
-              }
-            }
-          ?>
+            ?>
 
-          <form method="POST">
-            <input type="text" placeholder="Type your message..." name="sendReply">
-			      <button>Send</button>
-          </form>
-        </div>
+            <form method="POST">
+              <input type="text" placeholder="Type your message..." name="sendReply">
+			        <button>Send</button>
+            </form>
+          </div>
         <?php endif;?>
       </div>
+      
+     
+      
+      
     </div>
    </body>
 

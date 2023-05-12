@@ -98,9 +98,34 @@ h3{
 	font-size: 25px;
 	font-family: sans-serif;
 }
-
+/*
 .parent{
 	width: 1150px;
+	display: flex;
+  	justify-content: space-between;
+}
+*/
+.info {
+	flex: 1;
+}
+
+.group{
+	display: flex;
+}
+  
+.right-group {
+	float: center;
+	margin-bottom: 10px;
+	align-items: left;
+}
+
+.remove_agent{
+	flex: 0;
+}
+
+.description{
+	align-items: left;
+	margin-bottom: 15px;
 }
 
 tr{
@@ -111,13 +136,13 @@ tr{
 	width: 350px;
 	float: left;
 }
-
+*/
 .options{
-	width: 200px;
-	float: right;
-	justify-content: end;
-	margin-right: -15%;
-}*/
+	flex: 0;
+  	align-self: flex-start;
+  	margin-bottom: 10px;
+	margin-right: 600px;
+}
 
 .remove_agent{
   background-color: #c20000;
