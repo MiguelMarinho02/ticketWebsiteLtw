@@ -7,14 +7,18 @@
   background-color: #008CBA;
   border: none;
   color: white;
-  padding: 1px 5px;
+  padding: 0.25px 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
-  margin: 2px 2px;
+  font-size: 13.5px;
+  margin: 0.5px 2px;
   cursor: pointer;
   border-radius: 4px;
+}
+
+.search_wrapper{
+  margin-top: 10px;
 }
 
 img{
