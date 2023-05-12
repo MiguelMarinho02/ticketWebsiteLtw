@@ -1,7 +1,7 @@
 <?php
 declare(strict_types = 1);
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 session_start();
 $db = getDatabaseConnection();
 
@@ -29,7 +29,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
 <!DOCTYPE html>
 <html>
-<link rel="stylesheet" href="css/form.css">
+<link rel="stylesheet" href="../css/form.css">
 <head>
     <title>Create Department</title>
     <meta charset="utf-8">

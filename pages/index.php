@@ -1,7 +1,7 @@
 <?php
    declare(strict_types = 1);
-   require_once('connection.php');
-   require_once('functions.php');
+   require_once('../database/connection.php');
+   require_once('../utils/functions.php');
    session_start();
    $db = getDatabaseConnection();
 
@@ -15,18 +15,18 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/users.css">
+<link rel="stylesheet" href="../css/style_index.css">
    <head>
-      <title>UserList</title>
-      <script src="script/script.js" defer></script>
+      <title>Index</title>
+      <script src="../script/script.js"></script>
    </head>
 
    <body>
+
     <div class="container_master">
-      <div class="container">
+        <div class="container">          
         <ul class="buttons">
-        <button class="index" onclick="indexPage()">Início</button>
+            <button class="index" onclick="indexPage()">Início</button>
             <button class="tickets" onclick="ticketsPage()">Tickets</button>
             <button class="faqs" onclick="faqsPage()">FAQ's</button>
             <button class="users" onclick="usersPage()">UserList</button>
@@ -36,23 +36,34 @@
             <?php endif; ?>
             <button class="logout" onclick="logoutPage()">Logout</button>
         </ul>
-      </div>
-      
+        </div>
+        
       <div class="content">
+      <h1>Welcome <?php echo $user["username"]?>!</h1>
+      <br>
+      <h2>Your role is <?php echo $user["role"]?>.</h2>
+      <br>
 
-      <h2>List of users</h2>
-
-      <div class="search_wrapper">
-        <label for="search">Search Users</label><br>
-        <input type="search" id="search_user" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
-      </div>
-      
-      <div id="search-result" class="table">
-      </div>
-      <button id="show-more-user">Show More</button> 
+      <h2>Your Active tickets as client</h2>
+        <tbody>
+            <?php
+               getTicketsTableForUser(0); //prints clients table
+            ?>
+        </tbody>
+      </table>
+      <?php if($user["role"] != "client"):?>
+      <br>
+      <h2>Your Active tickets as agent</h2>
+        <tbody>
+            <?php
+               getTicketsTableForUser(1); //prints agent table
+            ?>
+        </tbody>
+      </table>
+      <?php endif; ?>
       </div> <?php //content div ?>
       </div> <?php //container div ?>
-    </div>  
+    </div>
    </body>
 
 </html>

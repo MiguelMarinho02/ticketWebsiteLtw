@@ -1,7 +1,7 @@
 <?php
 
 declare(strict_types = 1);
-require_once('connection.php');
+require_once('../database/connection.php');
 session_start();
 function searchUser($id){
     $db = getDatabaseConnection();

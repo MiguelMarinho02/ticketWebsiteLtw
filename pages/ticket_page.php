@@ -1,8 +1,8 @@
 <?php
 
 declare(strict_types = 1);
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 session_start();
 
 if (!isset($_SESSION["user_id"])){
@@ -116,11 +116,11 @@ if($ticket_to_display == null){
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/ticket_page.css">
+<link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/ticket_page.css">
    <head>
       <title>TicketPage</title>
-      <script src="script/script.js" defer></script>
+      <script src="../script/script.js" defer></script>
    </head>
 
    <body>

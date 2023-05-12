@@ -1,6 +1,6 @@
 <?php
 
-require_once('connection.php');
+require_once('../database/connection.php');
 
 session_start();
 if(isset($_SESSION['user_id'])) {
@@ -67,7 +67,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 <html>
     <head>
         <title>SignUp Page</title>
-        <link href="css/login.css" rel="stylesheet">
+        <link href="../css/login.css" rel="stylesheet">
     </head>
     <body>
         <h1>SignUp</h1>

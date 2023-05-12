@@ -14,10 +14,10 @@ function encodeForAjax(data) {
     }).join('&')
 }
 
-function loadResultsForTickets(limitForSearches){
+function loadResultsForTickets(limitForTickets){
     const value = searchTickets.value;
     
-    request.open('get',"search_tickets.php?" + encodeForAjax({value:value,limit:limitForTickets}),true)
+    request.open('get',"../processes/search_tickets.php?" + encodeForAjax({value:value,limit:limitForTickets}),true)
         request.onload = function() {
             if (request.status === 200) {
                 // the response was successful, update the HTML with the new content
@@ -53,7 +53,7 @@ if(searchTickets != null){
 
 function loadResultsForUsers(limitForSearches){
     const value = searchInput.value;
-    request.open('get',"search_users.php?" + encodeForAjax({value:value,limit:limitForSearches}),true)
+    request.open('get',"../processes/search_users.php?" + encodeForAjax({value:value,limit:limitForSearches}),true)
         request.onload = function() {
             if (request.status === 200) {
                 // the response was successful, update the HTML with the new content
@@ -90,7 +90,7 @@ if(searchInputForTicket != null){
         const value = e.target.value;
         console.log(1);
         
-        request.open('get',"search_users_ticket.php?" + encodeForAjax({value:value}),true)
+        request.open('get',"../processes/search_users_ticket.php?" + encodeForAjax({value:value}),true)
         request.onload = function() {
             if (request.status === 200) {
                 // the response was successful, update the HTML with the new content

@@ -1,6 +1,6 @@
 <?php 
 declare(strict_types = 1);
-require_once('connection.php');
+require_once('../database/connection.php');
 session_start();
 $db = getDatabaseConnection();
 
@@ -34,11 +34,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/admin_page.css">
+<link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/admin_page.css">
    <head>
       <title>AdminPage</title>
-      <script src="script/script.js"></script>
+      <script src="../script/script.js"></script>
    </head>
    <body>
    <div class="container_master">

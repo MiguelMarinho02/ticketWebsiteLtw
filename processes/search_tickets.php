@@ -1,7 +1,7 @@
 <?php 
 declare(strict_types = 1);
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 
 $db = getDatabaseConnection();
 
@@ -47,9 +47,9 @@ $html = '<table>
 foreach ($results as $ticket) {
     $html .= "<tr>
     <td> <button onclick=sendDataTicket('". $ticket['id'] ."')>".$ticket['id']."</button></td>
-    <td>" . searchDepartment($ticket["department_id"])["name"] . "</td>
+    <td>" . (searchDepartment($ticket["department_id"])["name"] ?? "N/A") . "</td>
     <td>" . searchUser($ticket["client_id"])["username"] . "</td>
-    <td>" . searchUser($ticket["agent_id"])["username"] . "</td>
+    <td>" . (searchUser($ticket["agent_id"])["username"] ?? "N/A") . "</td>
     <td>" . $ticket['subject'] . "</td>
     <td>" . $ticket['status'] . "</td>
     <td>" . $ticket['priority'] . "</td>

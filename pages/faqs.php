@@ -1,7 +1,7 @@
 <?php
    declare(strict_types = 1);
-   require_once('connection.php');
-   require_once('functions.php');
+   require_once('../database/connection.php');
+   require_once('../utils/functions.php');
    session_start();
    $db = getDatabaseConnection();
 
@@ -24,11 +24,11 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/faq.css">
+<link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/faq.css">
    <head>
       <title>FAQ's</title>
-      <script src="script/script.js"></script>
+      <script src="../script/script.js"></script>
    </head>
    <body>
 

@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <?php
 session_start();
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 if (!isset($_SESSION["user_id"])){
     header("Location: login.php");
 }
@@ -36,7 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
 ?>
 <html>
-<link rel="stylesheet" href="css/form.css">
+<link rel="stylesheet" href="../css/form.css">
 <head>
     <title>Create ticket</title>
     <meta charset="utf-8">
