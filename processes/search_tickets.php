@@ -14,13 +14,29 @@ if($search_input == ""){
 
 else{
     //parse search_input
+    $tags = explode(',',$search_input);
+    $query = 'SELECT DISTINCT tickets.* FROM tickets 
+    JOIN ticket_hashtags ON tickets.id = ticket_hashtags.ticket_id 
+    JOIN hashtags ON hashtags.id = ticket_hashtags.hashtag_id
+    WHERE ';
+    $query .= '(hashtags.hashtag LIKE ?) ';
+    $newArray = array();
+    $tags = array_filter($tags); 
+    foreach($tags as $tag){
+        $tag = '%' . $tag . '%';
+        array_push($newArray,$tag);
+    }
 
-    $search_input = '%' . $search_input . '%';
-    $stmt = $db->prepare('SELECT DISTINCT tickets.* FROM tickets 
-                          JOIN ticket_hashtags ON tickets.id = ticket_hashtags.ticket_id 
-                          JOIN hashtags ON hashtags.id = ticket_hashtags.hashtag_id
-                          WHERE (hashtags.hashtag LIKE ?) LIMIT ?');
-    $stmt->execute(array($search_input,$limit));
+    for($i = 0; $i < count($tags) -1;$i++){
+        $query .= 'OR (hashtags.hashtag LIKE ?)';
+    }
+
+    $query .= ' LIMIT ?';
+    array_push($newArray,$limit);
+    
+    //exectute querry
+    $stmt = $db->prepare($query);
+    $stmt->execute($newArray);
     $results = $stmt->fetchAll();
 }
 
