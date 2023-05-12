@@ -1,7 +1,7 @@
 <?php
    declare(strict_types = 1);
-   require_once('connection.php');
-   require_once('functions.php');
+   require_once('../database/connection.php');
+   require_once('../utils/functions.php');
    session_start();
    $db = getDatabaseConnection();
 
@@ -15,11 +15,11 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/users.css">
+<link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/users.css">
    <head>
       <title>UserList</title>
-      <script src="script/script.js" defer></script>
+      <script src="../script/script.js" defer></script>
    </head>
 
    <body>
@@ -48,28 +48,8 @@
       </div>
       
       <div id="search-result" class="table">
-      <table>
-        <thead>
-            <tr>
-                <th>Username<br><em>(Press to see profile)</em></th>
-                <th>Name</th>
-                <th>Role</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-               $users = getAllUsers();
-               foreach($users as $element){
-                echo "<tr>
-                <td> <button onclick=sendDataUser('". $element['username'] ."')>". $element['username'] ."</button></td>
-                <td>" . $element['name'] . "</td>
-                <td>" . $element['role'] . "</td>
-                </tr>";
-               }
-            ?>
-        </tbody>
-      </table>
       </div>
+      <button id="show-more-user">Show More</button> 
       </div> <?php //content div ?>
       </div> <?php //container div ?>
     </div>  

@@ -1,8 +1,8 @@
 <?php
 
 declare(strict_types = 1);
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 session_start();
 if (!isset($_SESSION["user_id"])){
     header("Location: login.php");
@@ -60,10 +60,10 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/form.css">
+<link rel="stylesheet" href="../css/form.css">
    <head>
       <title>Edit Profile</title>
-      <script src="script/script.js"></script>
+      <script src="../script/script.js"></script>
    </head>
 
    <body>

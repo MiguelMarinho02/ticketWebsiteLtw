@@ -1,13 +1,29 @@
 <?php
 
 declare(strict_types = 1);
-require_once('connection.php');
+require_once('../database/connection.php');
 session_start();
 function searchUser($id){
     $db = getDatabaseConnection();
     $stmt = $db->prepare('SELECT * FROM user WHERE id = ?');
     $stmt->execute(array($id));
     return $stmt->fetch();
+}
+
+function getAllTickets(){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM tickets');
+    $stmt->execute();
+    $tickets = $stmt->fetchAll();
+    return $tickets;
+}
+
+function getAllTicketsWithLimit($limit){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM tickets LIMIT ?');
+    $stmt->execute(array($limit));
+    $tickets = $stmt->fetchAll();
+    return $tickets;
 }
 
 //paramter == 0 (search by client_id)
@@ -20,19 +36,17 @@ function getTicketsTableForUser($paramter){
     $user = searchUser($_SESSION["user_id"]);
 
     if($paramter == 0){
-        $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ?');
-        $stmt->execute(array($user["id"]));
+        $stmt = $db->prepare('SELECT * FROM tickets WHERE client_id = ? and status != ?');
+        $stmt->execute(array($user["id"],"closed"));
         $tickets = $stmt->fetchAll();
     }
     else if($paramter == 1){
-        $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ?');
-        $stmt->execute(array($user["id"]));
+        $stmt = $db->prepare('SELECT * FROM tickets WHERE agent_id = ? and status != ?');
+        $stmt->execute(array($user["id"],"closed"));
         $tickets = $stmt->fetchAll();
     }
     else if($paramter == 2){ 
-        $stmt = $db->prepare('SELECT * FROM tickets');
-        $stmt->execute();
-        $tickets = $stmt->fetchAll();
+        $tickets = getAllTickets();
     }
 
     if($tickets == null){
@@ -92,10 +106,10 @@ function getTicketsTableForUser($paramter){
 }
 }
 
-function getAllUsers(){
+function getAllUsersWithLimit($limit){
     $db = getDatabaseConnection();
-    $stmt = $db->prepare('SELECT username,name,role FROM user');
-    $stmt->execute();
+    $stmt = $db->prepare('SELECT username,name,role FROM user LIMIT ?');
+    $stmt->execute(array($limit));
     $users = $stmt->fetchAll();
     return $users;
 }
@@ -137,6 +151,33 @@ function getMessagesFromTicket($ticket_id){
     $stmt->execute(array($ticket_id));
     $messages = $stmt->fetchAll();
     return $messages;
+}
+
+function searchTag($tagName){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM hashtags WHERE hashtag = ?');
+    $stmt->execute(array($tagName));
+    $hashtag = $stmt->fetch();
+    return $hashtag;
+}
+
+function insertTag($tagName){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('INSERT INTO hashtags (hashtag) VALUES (?)');
+    $stmt->execute(array($tagName));
+    $db = null;
+}
+
+function checkIfTagIsAssociated($tagId,$ticketId){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM ticket_hashtags WHERE hashtag_id = ? and ticket_id = ?');
+    $stmt->execute(array($tagId,$ticketId));
+    $result = $stmt->fetch();
+    echo $result["hashtag_id"];
+    if($result == null){
+        return false;
+    }
+    return true;
 }
 
 ?>

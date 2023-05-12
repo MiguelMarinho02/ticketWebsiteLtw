@@ -1,6 +1,6 @@
 <?php
 
-require_once('connection.php');
+require_once('../database/connection.php');
 $valid_login = true;
 session_start();
 
@@ -32,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 <html>
     <head>
         <title>Login Page</title>
-        <link href="css/login.css" rel="stylesheet">
+        <link href="../css/login.css" rel="stylesheet">
     </head>
     <body>
         <h1>Log In</h1>

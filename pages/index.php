@@ -1,7 +1,7 @@
 <?php
    declare(strict_types = 1);
-   require_once('connection.php');
-   require_once('functions.php');
+   require_once('../database/connection.php');
+   require_once('../utils/functions.php');
    session_start();
    $db = getDatabaseConnection();
 
@@ -15,18 +15,18 @@
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/tickets.css">
+<link rel="stylesheet" href="../css/style_index.css">
    <head>
-      <title>Tickets</title>
-      <script src="script/script.js"></script>
+      <title>Index</title>
+      <script src="../script/script.js"></script>
    </head>
 
    <body>
-   <div class="container_master">
-        <div class="container">
+
+    <div class="container_master">
+        <div class="container">          
         <ul class="buttons">
-        <button class="index" onclick="indexPage()">Início</button>
+            <button class="index" onclick="indexPage()">Início</button>
             <button class="tickets" onclick="ticketsPage()">Tickets</button>
             <button class="faqs" onclick="faqsPage()">FAQ's</button>
             <button class="users" onclick="usersPage()">UserList</button>
@@ -37,19 +37,32 @@
             <button class="logout" onclick="logoutPage()">Logout</button>
         </ul>
         </div>
-      <div class="content">          
-      <h2>Active tickets</h2>
-      <div class="create_ticket">
-        <h3><a href="create_ticket.php">New ticket</a></h3>
-      </div>
+        
+      <div class="content">
+      <h1>Welcome <?php echo $user["username"]?>!</h1>
+      <br>
+      <h2>Your role is <?php echo $user["role"]?>.</h2>
+      <br>
+
+      <h2>Your Active tickets as client</h2>
         <tbody>
             <?php
-               getTicketsTableForUser(2);
+               getTicketsTableForUser(0); //prints clients table
             ?>
         </tbody>
       </table>
-      <br><br>
-      </div>
+      <?php if($user["role"] != "client"):?>
+      <br>
+      <h2>Your Active tickets as agent</h2>
+        <tbody>
+            <?php
+               getTicketsTableForUser(1); //prints agent table
+            ?>
+        </tbody>
+      </table>
+      <?php endif; ?>
+      </div> <?php //content div ?>
+      </div> <?php //container div ?>
     </div>
    </body>
 

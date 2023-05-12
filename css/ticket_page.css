@@ -100,18 +100,20 @@ h3{
 }
 
 .parent{
-	width: 800px;
+	width: 1150px;
 }
 
-.info{
-	width: 300px;
+/*.info{
+	width: 350px;
 	float: left;
 }
 
 .options{
-	width: 0px;
+	width: 200px;
 	float: right;
-}
+	justify-content: end;
+	margin-right: -15%;
+}*/
 
 .remove_agent{
   background-color: #c20000;

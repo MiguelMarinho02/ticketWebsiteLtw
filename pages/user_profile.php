@@ -1,8 +1,8 @@
 <?php
 
 declare(strict_types = 1);
-require_once('connection.php');
-require_once('functions.php');
+require_once('../database/connection.php');
+require_once('../utils/functions.php');
 session_start();
 if (!isset($_SESSION["user_id"])){
   header("Location: login.php");
@@ -36,11 +36,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
 
 <!DOCTYPE html>
 <html lang="en-US">
-<link rel="stylesheet" href="css/style_index.css">
-<link rel="stylesheet" href="css/user_profile.css">
+<link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/user_profile.css">
    <head>
       <title>User Profile</title>
-      <script src="script/script.js"></script>
+      <script src="../script/script.js"></script>
    </head>
 
    <body>
