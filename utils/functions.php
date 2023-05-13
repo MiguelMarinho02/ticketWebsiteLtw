@@ -26,6 +26,24 @@ function getAllTicketsWithLimit($limit){
     return $tickets;
 }
 
+function searchTagById($tagId){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT * FROM hashtags WHERE id = ?');
+    $stmt->execute(array($tagId));
+    $tag = $stmt->fetch();
+    return $tag;
+}
+
+function getTagsFromTicket($ticketId){
+    $db = getDatabaseConnection();
+    $stmt = $db->prepare('SELECT hashtags.* FROM tickets JOIN ticket_hashtags ON tickets.id = ticket_hashtags.ticket_id
+                                            JOIN hashtags ON hashtags.id = ticket_hashtags.hashtag_id
+                                            WHERE tickets.id = ?');
+    $stmt->execute(array($ticketId));
+    $tags = $stmt->fetchAll();
+    return $tags;
+}
+
 //paramter == 0 (search by client_id)
 //paramter == 1 (serach by agent_id)
 //paramter == 2 (search all)

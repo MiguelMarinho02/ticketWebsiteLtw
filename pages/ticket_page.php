@@ -82,21 +82,39 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST["tag"]) && $_POST["ta
   
   $error = checkIfTagIsAssociated($tag["id"],$ticket_to_display["id"]);
 
-  if($error){
-    
-  }
-  else{
+  if(!$error){
     $stmt = $db->prepare('INSERT INTO ticket_hashtags (hashtag_id,ticket_id) VALUES (?,?)');
     $stmt->execute(array($tag["id"],$ticket_to_display["id"]));
+
     $updated_at = date("F j, Y, g:i a");
     $stmt = $db->prepare('UPDATE tickets set updated_at = ? WHERE id = ?');
     $stmt->execute(array($updated_at,$ticket_to_display["id"]));
+
     $db = null;
     $msg = "Added tag " . $_POST["tag"];
     insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+
     header("Location: {$_SERVER['REQUEST_URI']}");
     exit();
   }
+}
+
+//remove tag
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["removeTag"])) {
+
+  $stmt = $db->prepare('DELETE FROM ticket_hashtags WHERE ticket_id = ? and hashtag_id = ?');
+  $stmt->execute(array($ticket_to_display["id"],$_POST["removeTag"]));
+
+  $updated_at = date("F j, Y, g:i a");
+  $stmt = $db->prepare('UPDATE tickets set updated_at = ? WHERE id = ?');
+  $stmt->execute(array($updated_at,$ticket_to_display["id"]));
+
+  $db = null;
+  $msg = "Removed tag " . searchTagById($_POST["removeTag"])["hashtag"];
+  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+
+  header("Location: {$_SERVER['REQUEST_URI']}");
+  exit();
 }
 
 //send message
@@ -163,6 +181,8 @@ if($ticket_to_display == null){
                 <br>
               <?php endif; ?>
             <?php endif; ?>
+
+            
           </div>
           
           <div class="options">
@@ -221,7 +241,33 @@ if($ticket_to_display == null){
 
             <?php endif; ?>
           </div>
-          </div>          
+          </div> 
+          
+          <hr>
+          <div class="tagsList">
+            <h3>Hashtag List</h3>
+            <?php
+              $displayTags = getTagsFromTicket($ticket_to_display["id"]);
+              if($user["role"] == "client"){
+                $html = "";
+                foreach($displayTags as $displayTag){
+                 $html .= $displayTag["hashtag"] . ", ";
+                }
+                $html = substr($html,0,-2);
+                echo $html;
+              }
+              else{
+                $html = "";
+                foreach($displayTags as $displayTag){
+                  $html .= '<form method="post">';
+                  $html .= '<button type="submit" name="removeTag" value="' . $displayTag["id"] . '">' . $displayTag["hashtag"] . '</button>';
+                  $html .= '</form>';
+                }
+                echo $html;
+              }
+            ?>
+          </div>
+
           <hr>
           <div class="description">
             <h3>Description</h3>
@@ -256,10 +302,6 @@ if($ticket_to_display == null){
           </div>
         <?php endif;?>
       </div>
-      
-     
-      
-      
     </div>
    </body>
 

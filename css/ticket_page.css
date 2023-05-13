@@ -137,6 +137,28 @@ tr{
 	float: left;
 }
 */
+
+
+.tagsList form{
+	margin-right: 5px;
+	display: inline-block;
+}
+
+.tagsList button{
+	background-color: #008CBA;
+	border: none;
+	border-radius: 4px;
+	color: white;
+	padding: 3px 6px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 12px;
+	margin: 1px 0.5px;
+	cursor: pointer;
+	margin-left: 5px;
+}
+
 .options{
 	flex: 0;
   	align-self: flex-start;
