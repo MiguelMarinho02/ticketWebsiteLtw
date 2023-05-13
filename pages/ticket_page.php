@@ -248,6 +248,10 @@ if($ticket_to_display == null){
             <h3>Hashtag List</h3>
             <?php
               $displayTags = getTagsFromTicket($ticket_to_display["id"]);
+              if($displayTags == null){
+                echo "No hashtags are associated with this ticket";
+              }
+
               if($user["role"] == "client"){
                 $html = "";
                 foreach($displayTags as $displayTag){
