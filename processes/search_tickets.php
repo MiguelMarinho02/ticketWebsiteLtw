@@ -3,12 +3,17 @@ declare(strict_types = 1);
 require_once('../database/connection.php');
 require_once('../utils/functions.php');
 
+session_start();
 $db = getDatabaseConnection();
+
+$user = searchUser($_SESSION["user_id"]);
 
 $limit = isset($_GET['limit']) ? (int)$_GET['limit'] : 10;
 $search_input = $_GET["value"];
+$byYourDp = $_GET["filterByDp"];
+$byDate = $_GET["filterByDate"];
 
-if($search_input == ""){
+if($search_input == "" && $byDate == "false"){
     $results = getAllTicketsWithLimit($limit);
 }
 
@@ -31,7 +36,15 @@ else{
         $query .= 'OR (hashtags.hashtag LIKE ?)';
     }
 
+    if($byDate == "true"){
+        $query .= ' ORDER BY tickets.updated_at DESC';
+    }
+
     $query .= ' LIMIT ?';
+
+    if($newArray[0] == null && $byDate == "true"){
+        $query = 'SELECT * FROM tickets ORDER BY tickets.updated_at DESC LIMIT ?';
+    }
     array_push($newArray,$limit);
     
     //exectute querry
@@ -60,7 +73,13 @@ $html = '<table>
 </thead>
 <tbody>';
 
+$checked_inside_loop = false;
 foreach ($results as $ticket) {
+    if($byYourDp == "true" && $user["role"] == "agent" && $ticket["department_id"] != $user["department_id"]){
+        continue;
+    }
+
+    $checked_inside_loop = true;
     $html .= "<tr>
     <td> <button onclick=sendDataTicket('". $ticket['id'] ."')>".$ticket['id']."</button></td>
     <td>" . (searchDepartment($ticket["department_id"])["name"] ?? "N/A") . "</td>
@@ -73,6 +92,11 @@ foreach ($results as $ticket) {
     </tr>";
 }
 $html .= '</tbody></table>';
+
+if(!$checked_inside_loop){
+    echo "No results found";
+    exit();
+}
 
 echo $html;
 ?>

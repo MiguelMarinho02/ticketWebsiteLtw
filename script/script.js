@@ -1,11 +1,14 @@
 const searchInput = document.querySelector('#search_user')
-const searchInputForTicket = document.querySelector('#search_user_ticket')
 const showMoreButtonUsers = document.querySelector('#show-more-user')
+const searchInputForTicket = document.querySelector('#search_user_ticket')
 const showMoreButtonTickets = document.querySelector('#show-more-tickets')
-const searchTags = document.querySelector('#tag')
 const searchTickets = document.querySelector('#search-tickets')
+const filterByUserDepartmentTickets = document.querySelector('#filterByYourDepartment')
+const filterByDate = document.querySelector('#filterByDate')
 let limitForSearches = 10;
 let limitForTickets = 10;
+let byUserDepartment = false;
+let byDate = false;
 const request = new XMLHttpRequest();
 
 function encodeForAjax(data) {
@@ -17,7 +20,7 @@ function encodeForAjax(data) {
 function loadResultsForTickets(limitForTickets){
     const value = searchTickets.value;
     
-    request.open('get',"../processes/search_tickets.php?" + encodeForAjax({value:value,limit:limitForTickets}),true)
+    request.open('get',"../processes/search_tickets.php?" + encodeForAjax({value:value,limit:limitForTickets,filterByDp:byUserDepartment,filterByDate:byDate}),true)
         request.onload = function() {
             if (request.status === 200) {
                 // the response was successful, update the HTML with the new content
@@ -34,6 +37,30 @@ if(searchTickets){
     if(!(searchTickets.value)){
         loadResultsForTickets(limitForTickets);
     }
+}
+
+if(filterByDate != null){
+    filterByDate.addEventListener("click", function(){
+        if(document.getElementById('filterByDate').checked){
+            byDate = true;
+        }
+        else{
+            byDate = false;
+        }
+        loadResultsForTickets(limitForTickets);
+    })
+}
+
+if(filterByUserDepartmentTickets != null){
+    filterByUserDepartmentTickets.addEventListener("click", function(){
+        if(document.getElementById('filterByYourDepartment').checked){
+            byUserDepartment = true;
+        }
+        else{
+            byUserDepartment = false;
+        }
+        loadResultsForTickets(limitForTickets);
+    })
 }
 
 if(showMoreButtonTickets != null){

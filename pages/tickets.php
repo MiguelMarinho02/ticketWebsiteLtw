@@ -37,7 +37,7 @@
             <button class="logout" onclick="logoutPage()">Logout</button>
         </ul>
         </div>
-      <div class="content">          
+    <div class="content">          
       <h2>Active tickets</h2>
       <div class="create_ticket">
         <h3><a href="create_ticket.php">New ticket</a></h3>
@@ -47,6 +47,16 @@
         <label for="search">Search Tickets</label><br>
         <input type="search" id="search-tickets" placeholder="Search by tag.." style="width: 300px; height: 30px; margin-top: 7px;">
       </div>
+
+      <br>
+      <div class="filters">
+         <label for="filters">Filters</label><br>
+         <?php if($user["role"] == "agent"):?>
+         <input type="checkbox" id="filterByYourDepartment">By Your Department</input>
+         <?php endif; ?>
+         <input type="checkbox" id="filterByDate">By last updated ticket</input>
+      </div>
+
       <div id="ticket-results">
       </div>  
       <br><br>
