@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateAgent"])) {
     $stmt = $db->prepare('UPDATE tickets set agent_id = ?, updated_at = ?, status = ? WHERE id = ?');
     $stmt->execute(array(null,$updated_at,"open",$ticket_to_display["id"]));
     $db = null;
-    insertChangeToTicket($user["id"],$ticket_to_display["id"],"Removed current agent");
+    insertChangeToTicket($user["id"],$ticket_to_display["id"],"Removed current agent",$updated_at);
   }
   else{
     if($_POST["userId"] != $ticket_to_display["client_id"]){
@@ -37,7 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["updateAgent"])) {
       $stmt->execute(array($_POST['userId'],$updated_at,"assigned",$ticket_to_display["id"]));
       $db = null;
       $msg = "Ticket assigned to " . searchUser($_POST["userId"])["username"];
-      insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg); 
+      insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg,$updated_at); 
     }
   }
   header("Location: {$_SERVER['REQUEST_URI']}");
@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["department"])) {
   $stmt->execute(array($_POST["department"],$updated_at,$ticket_to_display["id"]));
   $db = null;
   $msg = "Changed department to " . searchDepartment($_POST["department"])["name"];
-  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg,$updated_at);
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
 }
@@ -63,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["status"])) {
   $stmt->execute(array($_POST["status"],$updated_at,$ticket_to_display["id"]));
   $db = null;
   $msg = "Changed status to " . $_POST["status"];
-  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg,$updated_at);
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
 }
@@ -92,7 +92,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && (isset($_POST["tag"]) && $_POST["ta
 
     $db = null;
     $msg = "Added tag " . $_POST["tag"];
-    insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+    insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg,$updated_at);
 
     header("Location: {$_SERVER['REQUEST_URI']}");
     exit();
@@ -111,7 +111,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST["removeTag"])) {
 
   $db = null;
   $msg = "Removed tag " . searchTagById($_POST["removeTag"])["hashtag"];
-  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg);
+  insertChangeToTicket($user["id"],$ticket_to_display["id"],$msg,$updated_at);
 
   header("Location: {$_SERVER['REQUEST_URI']}");
   exit();
@@ -215,6 +215,17 @@ if($ticket_to_display == null){
                   <input class="change_department" type="submit" value="Change Department">
                 </form>
 
+                <form method="POST">
+                  <div class="search_wrapper">
+                    <label for="tag">Apply Tag</label><br>
+                    <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
+                    <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+                    <br>
+                    <input class="addTag" type="submit" value="Apply">
+                  </div>
+                </form>
+
+              <?php endif; ?>
                 <br>
                 <form method="POST">
                   <label for="status">Status</label>
@@ -226,19 +237,6 @@ if($ticket_to_display == null){
                   <input class="change_status" type="submit" value="Change Status">
                 </form>
                 <br>
-
-                <form method="POST">
-                  <div class="search_wrapper">
-                    <label for="tag">Apply Tag</label><br>
-                    <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
-                    <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
-                    <br>
-                    <input class="addTag" type="submit" value="Apply">
-                  </div>
-                </form>
-
-                <?php endif; ?>
-
             <?php endif; ?>
           </div>
           </div> 

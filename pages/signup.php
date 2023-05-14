@@ -32,8 +32,8 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     }
     
     else{
-    $password_hashed = password_hash($_POST["password"],PASSWORD_DEFAULT);
-    
+    $options = ['cost' => 12];    
+    $password_hashed = password_hash($_POST["password"],PASSWORD_DEFAULT,$options);
     $db = getDatabaseConnection();
     try{
         $stmt = $db->prepare('INSERT INTO user (name, username, email, password, role) VALUES (?,?,?,?,"client")');

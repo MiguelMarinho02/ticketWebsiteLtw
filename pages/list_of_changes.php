@@ -57,6 +57,7 @@ $changes = $stmt->fetchAll();
           foreach($changes as $change){
             $change_author = searchUser($change["user_id"]);
             echo "<h3>Change made by " . $change_author["username"] . ":</h3>";
+            echo "<p>Change made at " . $change["date"] . "</p>";
             echo "<p>" . $change["change"] . "</p>";
             echo "<br>";
           } 

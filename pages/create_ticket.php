@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
 
         $lastInsertedId = $db->lastInsertId();
         $db = null;
-        insertChangeToTicket($_SESSION["user_id"],$lastInsertedId,"Created Ticket");
+        insertChangeToTicket($_SESSION["user_id"],$lastInsertedId,"Created Ticket",$updated_at);
     }
     else{
         $valid_ticket = 0;

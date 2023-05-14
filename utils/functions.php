@@ -148,10 +148,10 @@ function getAllDepartments(){
     return $departments;
 }
 
-function insertChangeToTicket($user_id,$ticket_id,$change){
+function insertChangeToTicket($user_id,$ticket_id,$change,$date){
     $db = getDatabaseConnection();
-    $stmt = $db->prepare('INSERT INTO changesToTicket (user_id,ticket_id,change)VALUES (?,?,?)');
-    $stmt->execute(array($user_id,$ticket_id,$change));
+    $stmt = $db->prepare('INSERT INTO changesToTicket (user_id,ticket_id,change,date)VALUES (?,?,?,?)');
+    $stmt->execute(array($user_id,$ticket_id,$change,$date));
     $db = null;
 }
 

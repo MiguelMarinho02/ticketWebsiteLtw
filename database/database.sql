@@ -73,6 +73,7 @@ CREATE TABLE changesToTicket (
   user_id INTEGER,
   ticket_id INTEGER,
   change TEXT NOT NULL,
+  date DATETIME,
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (ticket_id) REFERENCES tickets(id) ON DELETE CASCADE
 );
