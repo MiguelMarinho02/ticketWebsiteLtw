@@ -19,21 +19,21 @@
   display: inline-block;
 }
   
-  input[name='btnsubmit'] {
-    background-color: #c20000;
-    border: none;
-    color: white;
-    padding: 10px 20px;
-    text-align: center;
-    text-decoration: none;
-    display: inline-block;
-    font-size: 16px;
-    margin: 4px 2px;
-    cursor: pointer;
-    border-radius: 4px;
-    margin-top: 15px;
-    margin-bottom: 10px;
-  }
+input[name='btnsubmit'] {
+  background-color: #c20000;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
 
 .title-and-button {
   display: flex;

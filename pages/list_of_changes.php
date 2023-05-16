@@ -31,6 +31,7 @@ $changes = $stmt->fetchAll();
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/user_profile.css">
+<link rel="stylesheet" href="../css/list_of_changes.css">
    <head>
       <title>List of Changes</title>
       <script src="../script/script.js"></script>
@@ -55,11 +56,13 @@ $changes = $stmt->fetchAll();
         <h2>Changes:</h2>
         <?php
           foreach($changes as $change){
+            echo "<div class='faq-box'>";
             $change_author = searchUser($change["user_id"]);
             echo "<h3>Change made by " . $change_author["username"] . ":</h3>";
-            echo "<p>Change made at " . $change["date"] . "</p>";
-            echo "<p>" . $change["change"] . "</p>";
+            echo "<p>Change made at <strong class='change-time'>" . $change["date"] . "</strong></p>";
+            echo "<p class='paragraph'>\" " . $change["change"] . " \"</p>";
             echo "<br>";
+            echo "</div>";
           } 
         ?>
       </div>

@@ -1,0 +1,15 @@
+.faq-box {
+    background-color: white;
+    border: 2px solid #4CAF50;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+.change-time {
+    font-weight: bold;
+}
+
+.paragraph{
+    margin-bottom: 2px;
+}
