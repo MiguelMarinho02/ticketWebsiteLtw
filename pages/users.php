@@ -51,7 +51,6 @@
       </div>
       <button id="show-more-user">Show More</button> 
       </div> <?php //content div ?>
-      </div> <?php //container div ?>
     </div>  
    </body>
 

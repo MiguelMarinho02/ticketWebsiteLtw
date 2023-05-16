@@ -10,11 +10,6 @@
   font-weight: bold;
   font-size: larger;
 }
-  
-.search_wrapper input[type="text"] {
-  width: 400px;
-  height: 10px;
-}
 
 table tr td button {
   background: none;
@@ -25,7 +20,28 @@ table tr td button {
   text-decoration: underline;
 }
 
-.table{
-  width: 70%;
-  margin: 0 auto;
+.content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: auto;
+  height: 100%;
 }
+
+#show-more-user{
+  margin-top: 10px;
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 0.25px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13.5px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+

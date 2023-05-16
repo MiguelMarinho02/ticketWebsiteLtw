@@ -12,13 +12,33 @@
   text-decoration: none;
   display: inline-block;
   font-size: 13.5px;
-  margin: 0.5px 2px;
   cursor: pointer;
   border-radius: 4px;
+  margin-left: 10px;
 }
 
 .search_wrapper{
   margin-top: 10px;
+  margin-left: 10px;
+}
+
+.button button{
+  background-color: #008CBA;
+  border: none;
+  color: white;
+  padding: 0.25px 5px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 13.5px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin-left: 10px;
+}
+
+.filters{
+  margin-bottom: 20px;
+  margin-left: 10px;
 }
 
 img{
@@ -33,4 +53,15 @@ table tr td button {
   font-size: 16px;
   cursor: pointer;
   text-decoration: underline;
+}
+
+table{
+  margin-left: 10px;
+  width: 98%;
+}
+
+h2{
+  font-size: 30px;
+  text-align: left;
+  margin-left: 10px;
 }

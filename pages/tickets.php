@@ -38,7 +38,7 @@
         </ul>
         </div>
     <div class="content">          
-      <h2>Active tickets</h2>
+      <h2>Tickets</h2>
       <div class="create_ticket">
         <h3><a href="create_ticket.php">New ticket</a></h3>
       </div>

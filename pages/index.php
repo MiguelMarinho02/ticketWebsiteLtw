@@ -16,6 +16,7 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
+<link rel="stylesheet" href="../css/index.css">
    <head>
       <title>Index</title>
       <script src="../script/script.js"></script>
@@ -39,9 +40,7 @@
         </div>
         
       <div class="content">
-      <h1>Welcome <?php echo $user["username"]?>!</h1>
-      <br>
-      <h2>Your role is <?php echo $user["role"]?>.</h2>
+      <h1>Welcome back <?php echo $user["username"]?>!</h1>
       <br>
 
       <h2>Your Active tickets as client</h2>
