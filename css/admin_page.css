@@ -8,6 +8,14 @@
     border-right: none;
     border-top: none;
     border-bottom: none;
+    background-color:  rgb(219, 219, 219);
+  }
+
+  .content_user table td:last-child {
+    border-right: none;
+    border-top: none;
+    border-bottom: none;
+    background-color:  rgb(219, 219, 219);
   }
   
   .content_department td button[name='del_dp'] {
@@ -27,6 +35,12 @@
   .content_department h3{
     font-size: 40px;
   }
+
+  td{
+    background-color: white;
+  }
+
+
   
   .content_department a{
     background-color: #008CBA;

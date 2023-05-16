@@ -163,7 +163,7 @@ tr{
 	flex: 0;
   	align-self: flex-start;
   	margin-bottom: 10px;
-	margin-right: 600px;
+	margin-right: auto;
 }
 
 .remove_agent{

@@ -59,10 +59,11 @@
 
       <div id="ticket-results">
       </div>  
-      <br><br>
+      <br>
       <div class="button">
          <button id="show-more-tickets">Show More</button>
-      </div>    
+      </div>
+      <br>    
     </div>
    </body>
 
