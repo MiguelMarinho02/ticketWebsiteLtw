@@ -2,6 +2,7 @@
     border-collapse: collapse;
     width: 62.5%;
     margin-top: 50px;
+    margin-left: 0px;
   }
   
   .content_department table td:last-child {
@@ -86,6 +87,7 @@
     border-collapse: collapse;
     width: 80%;
     margin-top: 50px;
+    margin-left: 0px;
   }
   
   .content_user td button[name='del_user'] {

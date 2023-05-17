@@ -281,9 +281,10 @@ if($ticket_to_display == null){
         <br>
         <hr>  
 
+        <h3>Chat</h3>
         <?php if($user["id"] == $ticket_to_display["agent_id"] || $user["id"] == $ticket_to_display["client_id"]):?>          
           <div class="chat">
-            <h3>Chat</h3>
+            
             <?php
               foreach($messages as $message){
                 if(searchUser($message["user_id"])["id"] == $user["id"]){
