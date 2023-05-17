@@ -1,4 +1,4 @@
-.edit{
+.edit {
   background-color: #008CBA;
   border: none;
   color: white;
@@ -10,8 +10,8 @@
   margin: 1px 1px;
   cursor: pointer;
 }
-  
-.edit a{
+
+.edit a {
   text-decoration: none;
   color: white;
 }
@@ -25,13 +25,26 @@
   align-items: center;
 }
 
-.foto {
-  max-width: 100%;
-  max-height: 100%;
-  zoom: 30%;
+.profile-image {
+  width: 200px;
+  height: 200px;
+  background-image: url('../images/default-profile.png');
+  background-size: cover;
+  background-position: center;
+  float: left;
 }
 
-.change_role{
+.information {
+  margin-left: 220px;
+}
+
+.options {
+  clear: left;
+  margin-left: 43px;
+}
+
+.change_role,
+.change_department {
   background-color: #008CBA;
   border: none;
   border-radius: 4px;
@@ -45,21 +58,7 @@
   cursor: pointer;
 }
 
-.change_department{
-  background-color: #008CBA;
-  border: none;
-  border-radius: 4px;
-  color: white;
-  padding: 3px 6px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 12px;
-  margin: 1px 0.5px;
-  cursor: pointer;
-}
-
-.roleChange{
+.roleChange {
   margin-top: 15px;
   font-size: 16px;
 }

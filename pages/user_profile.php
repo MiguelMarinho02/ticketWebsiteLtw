@@ -59,8 +59,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
         </ul>
       </div>
       <div class="content">
+        <div class="profile-image"></div>
         <div class="information">
-        <div>
           <h3>Name: <?php echo $user_in_profile["name"]?></h3>
           <h3>Username: <?php echo $user_in_profile["username"]?></h3>
           <h3>Email: <?php echo $user_in_profile["email"]?></h3>
@@ -70,6 +70,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
           <?php endif;?>  
         </div>
 
+        <div class="options">
         <?php if($user["role"] == "admin" && $user_in_profile["role"] != "admin"):?>
         <div class="roleChange">
           <form method="POST">
