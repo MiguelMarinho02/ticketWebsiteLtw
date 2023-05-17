@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="name" id= "name" name = "name" value=<?php echo $user["name"]?>>
             </div>
 
-            <div>
+            <div class="username">
                 <label for="username">Username</label>
                 <input type="username" id= "username" name = "username" value=<?php echo $user["username"]?>>
             </div>
@@ -105,7 +105,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <input type="password" id= "old_password" name = "old_password">
             </div>
 
-            <div>
+            <div class="new_password">
                 <label for="new_password">New Password</label>
                 <input type="password" id= "new_password" name = "new_password">
             </div>

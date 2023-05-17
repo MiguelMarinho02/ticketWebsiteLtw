@@ -75,6 +75,11 @@ form input {
     background-color: rgba(255, 255, 255, 0.7);
     border:solid 1px #ccc;
     margin-bottom: 10px;
+    width: 89.7%
+}
+
+.username{
+    margin-left: 25px;
 }
 
 #email {
@@ -90,6 +95,11 @@ form input {
     border: solid 1px #ccc;
     margin-bottom: 10px;
     margin-left: -2px;
+    width: 98.5%;
+}
+
+.new_password{
+    margin-left: 8.7px;
 }
 
 #old_password {
