@@ -45,5 +45,9 @@ table tr td button {
 }
 
 #search-result{
-  width: 75%;
+  width: 80%;
+}
+
+table{
+  width: 100%;
 }
