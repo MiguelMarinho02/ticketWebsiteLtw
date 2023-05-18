@@ -35,30 +35,33 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         <link href="../css/login.css" rel="stylesheet">
     </head>
     <body>
-        <h1>Log In</h1>
+        <div class="box"> 
+            <h1>Log In</h1>
 
-        <?php
-           if(!$valid_login):
-        ?>
-        <p><em>Invalid login</em></p>
-        <?php endif; ?>
+            <?php
+            if(!$valid_login):
+            ?>
+            <p><em>Invalid login</em></p>
+            <?php endif; ?>
 
-        <form method="post">
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id= "email" name = "email">
-            </div>
+        
+            <form method="post">
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id= "email" name = "email">
+                </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id= "password" name = "password">
-            </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id= "password" name = "password">
+                </div>
 
-            <button>Log in</button>
-        </form>
-        <div class ="ref">
-           <a href="signup.php">SignUp</a>
-        </div>     
+                <button>Log in</button>
+            </form>
+            <div class ="ref">
+              <a href="signup.php">SignUp</a>
+            </div>     
+        </div>
     </body>
 </html>
         

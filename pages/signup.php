@@ -70,41 +70,43 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
         <link href="../css/login.css" rel="stylesheet">
     </head>
     <body>
-        <h1>SignUp</h1>
+        <div class="box">
+            <h1>SignUp</h1>
 
-        <?php
-        if(!$valid_login):
-        ?>
-        <p><em><?php echo $error_msg ?></em></p>
-        <?php endif; ?>
+            <?php
+            if(!$valid_login):
+            ?>
+            <p><em><?php echo $error_msg ?></em></p>
+            <?php endif; ?>
 
-        <form method="post">
-            <div>
-                <label for="name">Name</label>
-                <input type="text" id= "name" name = "name">
-            </div>
+            <form method="post">
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" id= "name" name = "name">
+                </div>
 
-            <div>
-                <label for="username">UserName</label>
-                <input type="text" id= "username" name = "username">
-            </div>
+                <div>
+                    <label for="username">UserName</label>
+                    <input type="text" id= "username" name = "username">
+                </div>
 
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id= "email" name = "email">
-            </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" id= "email" name = "email">
+                </div>
 
-            <div>
-                <label for="password">Password</label>
-                <input type="password" id= "password" name = "password">
-            </div>
+                <div>
+                    <label for="password">Password</label>
+                    <input type="password" id= "password" name = "password">
+                </div>
 
-            <div>
-                <label for="r_password">Repeat<br>Password</label>
-                <input type="password" id= "r_password" name = "r_password">
-            </div>
+                <div>
+                    <label for="r_password">Repeat<br>Password</label>
+                    <input type="password" id= "r_password" name = "r_password">
+                </div>
 
-            <button>SignUp</button>´
-        </form>    
+                <button>SignUp</button>´
+            </form> 
+        </div>       
     </body>
 </html>

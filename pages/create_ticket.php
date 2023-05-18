@@ -42,7 +42,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
     <meta charset="utf-8">
 </head>
 <body>
-    <header>
+    <div class="box">
         <div class="back">
             <button type="submit"><a href="tickets.php">Back</a></button>
         </div>
@@ -90,6 +90,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST"){
             <?php endif; ?>
         </form>
 
-    </header>
+    </div>
 </body>
 </html>

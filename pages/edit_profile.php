@@ -66,53 +66,55 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
       <script src="../script/script.js"></script>
    </head>
 
-   <body>
-      <div class="buttons">
-        <div class="profile">
-        <button onclick="sendDataUser('<?php echo $user['username'] ?>')">Back</button>
-        </div>
-        <br>
+    <body>
+        <div class="box">
+            <div class="buttons">
+                <div class="profile">
+                <button onclick="sendDataUser('<?php echo $user['username'] ?>')">Back</button>
+                </div>
+                <br>
 
-      </div>
-      <br>
-
-      <?php if(!$success):?>
-      <em>Invalid credentials</em>
-      <br>
-      <?php endif; ?>
-
-      <div class="content">
-        <form method="post">
-            <div>
-                <label for="name">Name</label>
-                <input type="name" id= "name" name = "name" value=<?php echo $user["name"]?>>
             </div>
+            <br>
 
-            <div class="username">
-                <label for="username">Username</label>
-                <input type="username" id= "username" name = "username" value=<?php echo $user["username"]?>>
+            <?php if(!$success):?>
+            <em>Invalid credentials</em>
+            <br>
+            <?php endif; ?>
+
+            <div class="content">
+                <form method="post">
+                    <div>
+                        <label for="name">Name</label>
+                        <input type="name" id= "name" name = "name" value=<?php echo $user["name"]?>>
+                    </div>
+
+                    <div class="username">
+                        <label for="username">Username</label>
+                        <input type="username" id= "username" name = "username" value=<?php echo $user["username"]?>>
+                    </div>
+
+                    <div>
+                        <label for="email">Email</label>
+                        <input type="email" id= "email" name = "email" value=<?php echo $user["email"]?>>
+                    </div>
+
+                    <p><em>Fields below are not required to change the above ones</em></p>
+
+                    <div>
+                        <label for="old_password">Old Password</label>
+                        <input type="password" id= "old_password" name = "old_password">
+                    </div>
+
+                    <div class="new_password">
+                        <label for="new_password">New Password</label>
+                        <input type="password" id= "new_password" name = "new_password">
+                    </div>
+
+                    <button>Edit</button>
+                </form>
             </div>
-
-            <div>
-                <label for="email">Email</label>
-                <input type="email" id= "email" name = "email" value=<?php echo $user["email"]?>>
-            </div>
-
-            <p><em>Fields below are not required to change the above ones</em></p>
-
-            <div>
-                <label for="old_password">Old Password</label>
-                <input type="password" id= "old_password" name = "old_password">
-            </div>
-
-            <div class="new_password">
-                <label for="new_password">New Password</label>
-                <input type="password" id= "new_password" name = "new_password">
-            </div>
-
-            <button>Edit</button>
-        </form>
-      </div>
+        </div>  
    </body>
 
 </html>
