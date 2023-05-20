@@ -62,3 +62,8 @@
   margin-top: 15px;
   font-size: 16px;
 }
+
+.content{
+  zoom: 2.5;
+  align-content: center;
+}

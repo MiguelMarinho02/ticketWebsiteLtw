@@ -26,6 +26,7 @@
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/faq.css">
+<link rel="stylesheet" href="../css/responsive.css">
    <head>
       <title>FAQ's</title>
       <script src="../script/script.js"></script>

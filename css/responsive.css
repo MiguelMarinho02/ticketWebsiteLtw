@@ -1,0 +1,113 @@
+/*
+@media only screen and (max-width: 700px){
+
+    .buttons button{
+        zoom: 0.5;
+    }
+
+    h1, h2, p, h3{
+        zoom: 0.5;
+    }
+
+    table, tr, td, th{
+        zoom: 0.8;
+    }
+    
+}
+*/
+@media only screen and (min-resolution: 240dpi){
+
+    .buttons button{
+        zoom: 0.5;
+    }
+
+    h1, h2, p, h3{
+        zoom: 0.5;
+    }
+
+    table, tr, td, th{
+        zoom: 0.8;
+    }
+
+    .create_faq{
+        zoom: 0.8;
+    }
+
+    input[name='btnsubmit']{
+        zoom: 0.8;
+    }
+
+    .create_department{
+        zoom: 0.5;
+    }
+
+    .info{
+        zoom: 1.25;
+    }
+
+    .options{
+        zoom: 0.7;
+    }
+
+    .changes button, .remove_agent{
+        zoom: 0.5;
+    }
+
+    .group_of_tags{
+        zoom: 0.7;
+    }
+
+    .description{
+        zoom: 1.2;
+    }
+
+}
+
+@media only screen and (min-resolution: 384dpi){
+    
+    table, tr, td, th{
+        zoom: 0.7;
+    }
+
+    .search_wrapper{
+        zoom: 0.7;
+    }
+
+    .filters{
+        zoom: 0.7;
+    }
+
+    #show-more-tickets{
+        zoom: 0.7;
+    }
+
+    #search_user{
+        width: 50%;
+    }
+
+    #show-more-user{
+        zoom: 0.7;
+    }
+
+    .message_label{
+        zoom: 0.8;
+    }
+
+    .options{
+        display: none;
+    }
+
+}
+
+@media only screen and (min-resolution: 480dpi){
+    #search_user{
+        zoom: 0.8;
+    }
+
+    .chat{
+        zoom: 0.85;
+    }
+}
+
+
+

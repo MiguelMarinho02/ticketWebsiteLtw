@@ -36,6 +36,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/admin_page.css">
+<link rel="stylesheet" href="../css/responsive.css">
    <head>
       <title>AdminPage</title>
       <script src="../script/script.js"></script>
@@ -60,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST"){
         <div class="content_department">
         <h3>Departments</h3>
         <form method="POST" action="admin_page.php">
-        <a href="create_department.php">Create department</a>   
+        <a class="create_department" href="create_department.php">Create department</a>   
         <table>
         <thead>
             <tr>

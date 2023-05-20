@@ -38,6 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["department"])){
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/user_profile.css">
+<link rel="stylesheet" href="../css/responsive.css">
    <head>
       <title>User Profile</title>
       <script src="../script/script.js"></script>

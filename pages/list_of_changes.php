@@ -31,6 +31,7 @@ $changes = $stmt->fetchAll();
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/user_profile.css">
+<link rel="stylesheet" href="../css/responsive.css">
 <link rel="stylesheet" href="../css/list_of_changes.css">
    <head>
       <title>List of Changes</title>

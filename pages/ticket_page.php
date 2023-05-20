@@ -136,6 +136,7 @@ if($ticket_to_display == null){
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/ticket_page.css">
+<link rel="stylesheet" href="../css/responsive.css">
    <head>
       <title>TicketPage</title>
       <script src="../script/script.js" defer></script>
@@ -244,6 +245,7 @@ if($ticket_to_display == null){
           <hr>
           <div class="tagsList">
             <h3>Hashtag List</h3>
+            <div class="group_of_tags">
             <?php
               $displayTags = getTagsFromTicket($ticket_to_display["id"]);
               if($displayTags == null){
@@ -268,6 +270,7 @@ if($ticket_to_display == null){
                 echo $html;
               }
             ?>
+            </div>
           </div>
 
           <hr>
@@ -298,7 +301,7 @@ if($ticket_to_display == null){
               }
             ?>
 
-            <form method="POST">
+            <form class="message_label" method="POST">
               <input type="text" placeholder="Type your message..." name="sendReply">
 			        <button>Send</button>
             </form>

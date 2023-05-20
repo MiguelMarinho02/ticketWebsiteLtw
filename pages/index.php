@@ -17,6 +17,7 @@
 <html lang="en-US">
 <link rel="stylesheet" href="../css/style_index.css">
 <link rel="stylesheet" href="../css/index.css">
+<link rel="stylesheet" href="../css/responsive.css">
    <head>
       <title>Index</title>
       <script src="../script/script.js"></script>
