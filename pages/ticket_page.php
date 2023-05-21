@@ -220,8 +220,11 @@ if($ticket_to_display == null){
                   <div class="search_wrapper">
                     <label for="tag">Apply Tag</label><br>
                     <?php if($error){echo "<p><em>Tag already used</em></p>";};?>
-                    <input type="search" id="tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
-                    <br>
+                    <input type="search" id="search_tag" name="tag" placeholder="Search.." style="width: 300px; height: 30px; margin-top: 7px;">
+
+                    <div id="tag-search-results">
+                    </div>
+
                     <input class="addTag" type="submit" value="Apply">
                   </div>
                 </form>

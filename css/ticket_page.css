@@ -22,6 +22,29 @@ h6 {
 	font-family: serif;
 }
 
+#suggestions{
+	background-color: white;
+	overflow-y: auto;
+	margin: auto;
+	border-radius: 5px;
+}
+
+#suggestions button{
+	all: unset;
+	margin: auto;
+	width: 100%;
+}
+
+#suggestions li{
+	cursor: pointer;
+	list-style-type: none;
+	margin-left: -35px;
+}
+
+#suggestions li:hover{
+	background-color: #f2f2f2;
+}
+
 .chat {
 	display: flex;
 	flex-direction: column;

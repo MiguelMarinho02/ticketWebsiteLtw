@@ -5,6 +5,7 @@ const showMoreButtonTickets = document.querySelector('#show-more-tickets')
 const searchTickets = document.querySelector('#search-tickets')
 const filterByUserDepartmentTickets = document.querySelector('#filterByYourDepartment')
 const filterByDate = document.querySelector('#filterByDate')
+const searchTag = document.querySelector('#search_tag')
 let limitForSearches = 10;
 let limitForTickets = 10;
 let byUserDepartment = false;
@@ -15,6 +16,28 @@ function encodeForAjax(data) {
     return Object.keys(data).map(function(k) {
         return encodeURIComponent(k) + '=' + encodeURIComponent(data[k])
     }).join('&')
+}
+
+function loadResultsForTags(){
+    const value = searchTag.value;
+    
+    request.open('get',"../processes/search_tags.php?" + encodeForAjax({value:value}),true)
+        request.onload = function() {
+            if (request.status === 200) {
+                // the response was successful, update the HTML with the new content
+                document.getElementById('tag-search-results').innerHTML = request.responseText;
+            } else {
+                // there was an error, log it to the console
+            console.error('Request failed.  Returned status of ' + request.status);
+            }
+        };
+    request.send();
+}
+
+if(searchTag != null){
+    searchTag.addEventListener("input", (e) =>{
+        loadResultsForTags();
+     });
 }
 
 function loadResultsForTickets(limitForTickets){

@@ -191,7 +191,6 @@ function checkIfTagIsAssociated($tagId,$ticketId){
     $stmt = $db->prepare('SELECT * FROM ticket_hashtags WHERE hashtag_id = ? and ticket_id = ?');
     $stmt->execute(array($tagId,$ticketId));
     $result = $stmt->fetch();
-    echo $result["hashtag_id"];
     if($result == null){
         return false;
     }
