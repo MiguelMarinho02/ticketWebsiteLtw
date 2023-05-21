@@ -64,6 +64,25 @@
 }
 
 .content{
-  zoom: 2.3;
-  align-content: center;
+  zoom: 1.5;
+  align-items: center;
+}
+
+
+
+
+@media only screen and (min-resolution: 240dpi){
+  .content{
+    zoom: 1;
+  }
+
+  .information{
+    zoom: 1.5;
+    padding-left: -100px;
+  }
+
+  .profile-image{
+    zoom: 0.8;
+  }
+
 }
